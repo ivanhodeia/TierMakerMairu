@@ -1,0 +1,37 @@
+table#tier-maker-table {
+  width: 100%;
+}
+
+#tier-maker-table thead,
+#tier-maker-table th {
+  display: none;
+}
+
+#tier-maker-table td.mat-column-position {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+
+#tier-maker-table td.mat-column-name {
+  padding-left: 16px;
+  font-size: 20px;
+  width: 8rem;
+}
+
+#tier-maker-table td.mat-column-pictures .drag-container {
+  display: flex;
+  width: 100%;
+}
+
+#tier-maker-table img {
+  width: 100px;
+  height: 100px;
+  object-fit: fill;
+  user-select: none;
+}
+
+#tier-maker-table img:hover {
+  cursor: pointer;
+}

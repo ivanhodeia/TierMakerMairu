@@ -1,0 +1,11 @@
+<div
+  id="pictures-grid"
+  class="drag-container"
+  [cdkDropListData]="dataSource"
+  (cdkDropListDropped)="onPictureDroppped($event)"
+  cdkDropList
+>
+  <div class="drag-box" [cdkDragData]="picture" *ngFor="let picture of dataSource" cdkDrag>
+    <img [src]="picture" alt="Tier maker picture!">
+  </div>
+</div>

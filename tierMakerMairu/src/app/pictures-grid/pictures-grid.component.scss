@@ -1,0 +1,14 @@
+#pictures-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#pictures-grid img {
+  width: 75px;
+  height: 75px;
+  object-fit: fill;
+}
+
+#pictures-grid img:hover {
+  cursor: pointer;
+}
