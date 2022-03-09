@@ -17,6 +17,7 @@
         tier-maker-table
         [dataSource]="tableDataSource"
         [displayedColumns]="displayedColumns"
+        [allListIds]="getAllListIds()"
         (pictureDrop)="onPictureDroppped($event)"
         class="tier-maker-table"
       ></div>
@@ -27,6 +28,8 @@
     <mat-card-content>
       <div
         [dataSource]="gridDataSource"
+        [picturesGridId]="picturesGridId"
+        [allListIds]="getAllListIds()"
         (pictureDrop)="onPictureDroppped($event)"
         pictures-grid
       ></div>

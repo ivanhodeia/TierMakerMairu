@@ -25,13 +25,11 @@ table#tier-maker-table {
   width: 100%;
 }
 
-#tier-maker-table img {
-  width: 100px;
-  height: 100px;
-  object-fit: fill;
-  user-select: none;
-}
-
 #tier-maker-table img:hover {
   cursor: pointer;
+}
+
+.empty-drag-box {
+  width: 100px;
+  height: 100px;
 }

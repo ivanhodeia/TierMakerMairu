@@ -11,6 +11,31 @@ main {
   height: 100%;
 }
 
+.drag-box:hover {
+  opacity: 0.8;
+}
+
+.drag-box:last-child {
+  border: none;
+}
+
+.drag-picture--grid,
+.drag-picture--table {
+  object-fit: fill;
+  user-select: none;
+}
+
+.drag-picture--table,
+.empty-drag-box--table {
+  width: 100px;
+  height: 100px;
+}
+.drag-picture--grid,
+.empty-drag-box--grid {
+  width: 75px;
+  height: 75px;
+}
+
 .cdk-drag-preview {
   box-sizing: border-box;
   border-radius: 4px;

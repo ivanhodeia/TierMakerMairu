@@ -8,9 +8,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class PicturesGridComponent {
   @Input() dataSource: Array<string> = [];
+  @Input() picturesGridId: string = '';
+  @Input() allListIds: Array<string> = [];
   @Output() pictureDrop: EventEmitter<any> = new EventEmitter();
 
   onPictureDroppped(event: any) {
     this.pictureDrop.emit(event);
+  }
+
+  getConnectedLists(currentId: string) {
+    return this.allListIds.filter(value => value != currentId);
   }
 }

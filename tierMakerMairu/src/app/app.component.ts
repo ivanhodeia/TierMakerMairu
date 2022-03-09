@@ -28,6 +28,8 @@ const PICTURES_DATA: string[] = [
   'https://robohash.org/1d10'
 ]
 
+const PICTURES_GRID_ID: string = 'pictures-grid';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -38,21 +40,22 @@ export class AppComponent {
   displayedColumns: string[] = ['position', 'name', 'pictures'];
   tableDataSource = TIER_MAKER_DATA;
   gridDataSource = PICTURES_DATA;
+  picturesGridId = PICTURES_GRID_ID;
 
   title: string = 'Tier maker';
   description: string = 'Descripción de la tier maker.';
 
-  onPictureDroppped(event: CdkDragDrop<string[]>) {
-    console.log(event);
-    let gridId = 'pictures-grid';
-    if (event.previousContainer === event.container) {
-      if (event.previousContainer.id == gridId) {
-        moveItemInArray(this.gridDataSource, event.previousIndex, event.currentIndex);
-      } else {
-        let rowIdx = event.previousContainer.id[event.previousContainer.id.length - 1] as any as number - 1; // < 10
-        moveItemInArray(this.tableDataSource[rowIdx as any as number].pictures, event.previousIndex, event.currentIndex);
-      }
+  getAllListIds() {
+    let l = [this.picturesGridId];
+    for (let element of this.tableDataSource) {
+      l.push(element.name + '-' + element.position);
+    }
+    return l;
+  }
 
+  onPictureDroppped(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(
         event.previousContainer.data,

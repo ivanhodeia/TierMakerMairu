@@ -16,9 +16,11 @@
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
       <div
-        [id]="'row-' + element.position"
+        [id]="getCurrentId(element)"
         [cdkDropListData]="element.pictures"
         (cdkDropListDropped)="onPictureDroppped($event)"
+        [cdkDropListConnectedTo]="getConnectedLists(getCurrentId(element))"
+        cdkDropListOrientation="horizontal"
         class="drag-container"
         cdkDropList
       >
@@ -28,8 +30,9 @@
           [cdkDragData]="picture"
           cdkDrag
         >
-          <img [src]="picture" alt="Tier maker picture!">
+          <img class="drag-picture--table" [src]="picture" alt="Tier maker picture!">
         </div>
+        <div class="drag-box empty-drag-box" cdkDrag [hidden]="element.pictures.lenght > 0"></div>
       </div>
     </td>
   </ng-container>

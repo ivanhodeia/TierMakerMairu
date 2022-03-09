@@ -11,9 +11,18 @@ import { TierMakerElement } from '../tier-maker-element.model';
 export class TierMakerTableComponent {
   @Input() displayedColumns: Array<string> = [];
   @Input() dataSource: Array<TierMakerElement> = [];
+  @Input() allListIds: Array<string> = [];
   @Output() pictureDrop: EventEmitter<any> = new EventEmitter();
 
   onPictureDroppped(event: CdkDragDrop<string[]>) {
     this.pictureDrop.emit(event);
+  }
+
+  getCurrentId(element: TierMakerElement) {
+    return element.name + '-' + element.position;
+  }
+
+  getConnectedLists(currentId: string) {
+    return this.allListIds.filter(value => value != currentId);
   }
 }
