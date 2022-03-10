@@ -5,8 +5,8 @@ import { getEmptyTierMakerElement, TierMakerElement } from './tier-maker-element
 import { TierModalComponent } from './tier-modal/tier-modal.component';
 
 const TIER_MAKER_DATA: TierMakerElement[] = [
-  {position: 1, color:'#ff0000', name: 'Hydrogen', pictures: ['https://robohash.org/1d', 'https://robohash.org/1dxd']},
-  {position: 2, color:'#001eff', name: 'Helium', pictures: ['https://robohash.org/1x2d', 'https://robohash.org/1dsdsds', 'https://robohash.org/1ddxdxdxd', 'https://robohash.org/1dxddddd']},
+  {position: 1, color:'#ff8d00e6', name: '<3', pictures: ['https://robohash.org/mandarina', 'https://robohash.org/tng']},
+  {position: 2, color:'#ff0000', name: 'Hydrogen', pictures: ['https://robohash.org/1d', 'https://robohash.org/1dxd']},
   {position: 3, color:'#00ffd5', name: 'Lithium', pictures: ['https://robohash.org/13d']},
   {position: 4, color:'#14FF00', name: 'Beryllium', pictures: ['https://robohash.org/1ddsds']},
   // {position: 5, name: 'Boron', pictures: ['https://robohash.org/1dfdsf']},
@@ -58,7 +58,8 @@ export class AppComponent {
     }
     return l;
   }
-
+  //           |
+  //Je je mira v
   onPictureDroppped(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -78,9 +79,7 @@ export class AppComponent {
   }
 
   onEditTierButtonClicked(selectedPosition: number) {
-    let currentTier = this.tableDataSource.find( (tierInfo) => {
-      return tierInfo.position === selectedPosition;
-    });
+    let currentTier = this.getTierByPosition(selectedPosition);
     if(currentTier){
       this.selectedTier = {...currentTier};
       this.openDialog();
@@ -94,35 +93,65 @@ export class AppComponent {
       if(result.data){
         let currentTier = result.data;
         if(result.isDelete){
-          this.onTierDeleted(currentTier);
+          this.deleteTier(currentTier);
         }
         else{
           if(currentTier.position == -1){
-            this.onNewTierAdded(currentTier);
+            this.addNewTier(currentTier);
           }
           else{
-            this.onExistingTierEdited(currentTier);
+            this.editExistingTier(currentTier);
           }
         }
       }
     });
   }
 
-  onNewTierAdded(tierToAdd: TierMakerElement) {
+  onSwapUp(position: number) {
+    let currentTier = this.getTierByPosition(position);
+    let otherTier = this.getTierByPosition(position-1);
+    this.swapTwoTierInfo(currentTier, otherTier);
+  }
+
+  onSwapDown(position: number) {
+    let currentTier = this.getTierByPosition(position);
+    let otherTier = this.getTierByPosition(position+1);
+    this.swapTwoTierInfo(currentTier, otherTier);
+  }
+
+  private getTierByPosition(position: number): TierMakerElement {
+    return this.tableDataSource.find( (tierInfo) =>{
+      return tierInfo.position === position;
+    }) ?? getEmptyTierMakerElement();
+  }
+
+  private swapTwoTierInfo(tierA: TierMakerElement, tierB: TierMakerElement): void {
+    let tmpName = tierA.name;
+    let tmpColor = tierA.color;
+    let tmpPictures = tierA.pictures;
+    tierA.name = tierB.name;
+    tierA.color = tierB.color;
+    tierA.pictures = tierB.pictures;
+    tierB.name = tmpName;
+    tierB.color = tmpColor;
+    tierB.pictures = tmpPictures;
+  }
+
+  private addNewTier(tierToAdd: TierMakerElement) {
     tierToAdd.position = this.tableDataSource.length+1;
     let newData = [...this.tableDataSource];
     newData.push(tierToAdd);
     this.tableDataSource = newData;
   }
 
-  onExistingTierEdited(tierToModify: TierMakerElement) {
+  private editExistingTier(tierToModify: TierMakerElement) {
     let newData = [...this.tableDataSource];
     newData[tierToModify.position-1] = {...tierToModify} as TierMakerElement;
     console.log("Tier To modify", tierToModify);
     this.tableDataSource = newData;
   }
 
-  onTierDeleted(tierToDelete: TierMakerElement) {
+  private deleteTier(tierToDelete: TierMakerElement) {
     let newData = this.tableDataSource.filter( (tierInfo) => {
       return tierInfo.position != tierToDelete.position;
     });
@@ -132,5 +161,4 @@ export class AppComponent {
       return tierInfo;
     });
   }
-
 }
