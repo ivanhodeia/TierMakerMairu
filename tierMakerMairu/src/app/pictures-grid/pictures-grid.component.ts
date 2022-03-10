@@ -13,6 +13,7 @@ export class PicturesGridComponent {
   @Output() pictureDrop: EventEmitter<any> = new EventEmitter();
 
   onPictureDroppped(event: any) {
+    console.log("Dropped in Picture Grid");
     this.pictureDrop.emit(event);
   }
 

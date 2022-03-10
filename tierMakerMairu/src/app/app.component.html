@@ -2,7 +2,7 @@
   <mat-toolbar color="primary">
     <span>Tier maker, baby!</span>
     <span class="spacer"></span>
-    <button mat-mini-fab aria-label="Plus icon">
+    <button mat-raised-button mat-mini-fab aria-label="Plus icon" (click)="onAddTierButtonClicked()">
       <mat-icon>add</mat-icon>
     </button>
   </mat-toolbar>
@@ -19,6 +19,7 @@
         [displayedColumns]="displayedColumns"
         [allListIds]="getAllListIds()"
         (pictureDrop)="onPictureDroppped($event)"
+        (editTier)="onEditTierButtonClicked($event)"
         class="tier-maker-table"
       ></div>
     </mat-card-content>
@@ -36,5 +37,4 @@
     </mat-card-content>
   </mat-card>
 </main>
-
 <!--<router-outlet></router-outlet> -->

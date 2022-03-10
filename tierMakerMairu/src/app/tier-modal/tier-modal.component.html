@@ -1,0 +1,20 @@
+<h2 mat-dialog-title> {{ modalTitle }} </h2>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field>
+    <mat-label>Color</mat-label>
+    <input matInput type="color" [(ngModel)]="tierToEdit.color" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput type="text" [(ngModel)]="tierToEdit.name" (ngModelChange)="onNameChanged();" required>
+  </mat-form-field>  
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button *ngIf="!isEdit; else elseModalButtonBlock" mat-button [mat-dialog-close]="{data: tierToEdit}" [disabled]="!isValid">Add</button>
+  <ng-template #elseModalButtonBlock>
+    <button mat-button [mat-dialog-close]="{data:tierToEdit}" [disabled]="!isValid">Edit</button>
+    <button mat-button [mat-dialog-close]="{data:tierToEdit, isDelete: true}">Delete</button>
+  </ng-template>
+  <button mat-button mat-dialog-close [mat-dialog-close]="{data: undefined}">Cancel</button>
+</mat-dialog-actions>
+  

@@ -13,8 +13,14 @@ export class TierMakerTableComponent {
   @Input() dataSource: Array<TierMakerElement> = [];
   @Input() allListIds: Array<string> = [];
   @Output() pictureDrop: EventEmitter<any> = new EventEmitter();
+  @Output() editTier: EventEmitter<number> = new EventEmitter();
+
+  onEditTierButtonClicked(event: number){
+    this.editTier.emit(event);
+  }
 
   onPictureDroppped(event: CdkDragDrop<string[]>) {
+    console.log("Dropped in Tier Maker Table");
     this.pictureDrop.emit(event);
   }
 
