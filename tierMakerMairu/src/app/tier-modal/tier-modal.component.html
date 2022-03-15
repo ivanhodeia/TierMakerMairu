@@ -12,6 +12,7 @@
 <mat-dialog-actions>
   <button *ngIf="!isEdit; else elseModalButtonBlock" mat-button [mat-dialog-close]="{data: tierToEdit}" [disabled]="!isValid">Add</button>
   <ng-template #elseModalButtonBlock>
+    <button mat-button [mat-dialog-close]="{data:tierToEdit, isClearImages: true}">Clear Images</button>
     <button mat-button [mat-dialog-close]="{data:tierToEdit}" [disabled]="!isValid">Edit</button>
     <button mat-button [mat-dialog-close]="{data:tierToEdit, isDelete: true}">Delete</button>
   </ng-template>

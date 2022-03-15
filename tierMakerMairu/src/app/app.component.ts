@@ -73,6 +73,30 @@ export class AppComponent {
     }
   }
 
+  onAddMoreImagesButtonClicked() {
+    //TODO: Llamar al servicio para añadir más imágenes
+  }
+
+  onClearAllButtonClicked() {
+    let newGridData = [...this.gridDataSource];
+    this.tableDataSource.forEach( (tierInfo) => {
+      newGridData = [...newGridData, ...tierInfo.pictures];
+      tierInfo.pictures = [];
+    });
+    this.gridDataSource = newGridData;
+    this.tableDataSource = [...this.tableDataSource];
+  }
+
+  onFillTiersRandomlyButtonClicked() {
+    let picturesToAdd = this.gridDataSource;
+    picturesToAdd.forEach( (pictureUrl) => {
+      let tierIndex = Math.floor(Math.random() * ( this.tableDataSource.length - 0));
+      this.tableDataSource[tierIndex].pictures.push(pictureUrl);
+    });
+    this.gridDataSource = [];
+    this.tableDataSource = [...this.tableDataSource];
+  }
+
   onAddTierButtonClicked() {
     this.selectedTier = getEmptyTierMakerElement();
     this.openDialog();
@@ -89,11 +113,14 @@ export class AppComponent {
   openDialog() {
     const dialogRef = this.dialog.open(TierModalComponent, {data: {tierToEdit: this.selectedTier}});
   
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe( (result) => {
       if(result.data){
         let currentTier = result.data;
         if(result.isDelete){
           this.deleteTier(currentTier);
+        }
+        else if(result.isClearImages){
+          this.clearImages(currentTier);
         }
         else{
           if(currentTier.position == -1){
@@ -137,6 +164,14 @@ export class AppComponent {
     tierB.pictures = tmpPictures;
   }
 
+  private clearImages(tierToClear: TierMakerElement) {
+    this.gridDataSource = [...this.gridDataSource, ...tierToClear.pictures];
+    tierToClear.pictures = [];
+    let newData = [...this.tableDataSource];
+    newData[tierToClear.position-1] = {...tierToClear} as TierMakerElement;
+    this.tableDataSource = newData;
+  }
+
   private addNewTier(tierToAdd: TierMakerElement) {
     tierToAdd.position = this.tableDataSource.length+1;
     let newData = [...this.tableDataSource];
@@ -147,7 +182,6 @@ export class AppComponent {
   private editExistingTier(tierToModify: TierMakerElement) {
     let newData = [...this.tableDataSource];
     newData[tierToModify.position-1] = {...tierToModify} as TierMakerElement;
-    console.log("Tier To modify", tierToModify);
     this.tableDataSource = newData;
   }
 
