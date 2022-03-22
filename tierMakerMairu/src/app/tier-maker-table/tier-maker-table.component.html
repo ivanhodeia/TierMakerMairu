@@ -2,7 +2,23 @@
   <!-- Position Column -->
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    <td mat-cell *matCellDef="let element" [style.background-color]="element.color">
+      <div class="button-container-container">
+        <div class="arrow-button-container">
+          <button *ngIf="element.position != 1" mat-mini-fab aria-label="Plus icon" (click)="onSwapButtonClicked(element.position, true)">
+            <mat-icon>keyboard_arrow_up</mat-icon>
+          </button>        
+          <button *ngIf="element.position != dataSource.length" mat-mini-fab aria-label="Plus icon" (click)="onSwapButtonClicked(element.position, false)">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+        </div>
+        <div class="centered">
+          <button mat-mini-fab aria-label="Plus icon" (click)="onEditTierButtonClicked(element.position)">
+            <mat-icon>brush</mat-icon>
+          </button>
+        </div>
+      </div>
+    </td>
   </ng-container>
 
   <!-- Name Column -->
@@ -35,6 +51,11 @@
         <div class="drag-box empty-drag-box--table" cdkDrag [hidden]="element.pictures.lenght > 0"></div>
       </div>
     </td>
+  </ng-container>
+<!-- Buttons Column -->
+  <ng-container matColumnDef="buttons">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element"> {{element.buttons}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

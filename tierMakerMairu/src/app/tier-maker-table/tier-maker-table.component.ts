@@ -13,8 +13,17 @@ export class TierMakerTableComponent {
   @Input() dataSource: Array<TierMakerElement> = [];
   @Input() allListIds: Array<string> = [];
   @Output() pictureDrop: EventEmitter<any> = new EventEmitter();
+  @Output() editTier: EventEmitter<number> = new EventEmitter();
+
+  @Output() swapUp: EventEmitter<number> = new EventEmitter();
+  @Output() swapDown: EventEmitter<number> = new EventEmitter();
+
+  onEditTierButtonClicked(event: number){
+    this.editTier.emit(event);
+  }
 
   onPictureDroppped(event: CdkDragDrop<string[]>) {
+    console.log("Dropped in Tier Maker Table");
     this.pictureDrop.emit(event);
   }
 
@@ -24,5 +33,14 @@ export class TierMakerTableComponent {
 
   getConnectedLists(currentId: string) {
     return this.allListIds.filter(value => value != currentId);
+  }
+
+  onSwapButtonClicked(position: number, isUp: boolean) {
+    if(isUp){
+      this.swapUp.emit(position);
+    }
+    else{
+      this.swapDown.emit(position);
+    }
   }
 }

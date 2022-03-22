@@ -2,9 +2,32 @@
   <mat-toolbar color="primary">
     <span>Tier maker, baby!</span>
     <span class="spacer"></span>
-    <button mat-mini-fab aria-label="Plus icon">
-      <mat-icon>add</mat-icon>
-    </button>
+    <div class="button-container">
+      <button mat-raised-button mat-mini-fab
+        aria-label="Plus icon" (click)="onAddMoreImagesButtonClicked()"
+        matTooltip="Add new Images"
+      >
+        <mat-icon>library_add</mat-icon>
+      </button>
+      <button mat-raised-button mat-mini-fab
+        aria-label="Plus icon" (click)="onClearAllButtonClicked()"
+        matTooltip="Clear all Tiers"
+      >
+        <mat-icon>clear_all</mat-icon>
+      </button>
+      <button mat-raised-button mat-mini-fab
+        aria-label="Plus icon" (click)="onFillTiersRandomlyButtonClicked()"
+        matTooltip="Fill Tiers randomly"  
+      >
+        <mat-icon>shuffle</mat-icon>
+      </button>
+      <button mat-raised-button mat-mini-fab
+        aria-label="Plus icon" (click)="onAddTierButtonClicked()"
+        matTooltip="Add new Tier"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </mat-toolbar>
 </nav>
 
@@ -19,6 +42,9 @@
         [displayedColumns]="displayedColumns"
         [allListIds]="getAllListIds()"
         (pictureDrop)="onPictureDroppped($event)"
+        (editTier)="onEditTierButtonClicked($event)"
+        (swapUp)="onSwapUp($event)"
+        (swapDown)="onSwapDown($event)"
         class="tier-maker-table"
       ></div>
     </mat-card-content>
@@ -36,5 +62,4 @@
     </mat-card-content>
   </mat-card>
 </main>
-
 <!--<router-outlet></router-outlet> -->
