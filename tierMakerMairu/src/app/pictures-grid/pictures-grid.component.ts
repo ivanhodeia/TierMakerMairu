@@ -12,7 +12,7 @@ export class PicturesGridComponent {
   @Input() allListIds: Array<string> = [];
   @Output() pictureDrop: EventEmitter<any> = new EventEmitter();
 
-  onPictureDroppped(event: any) {
+  onPictureDroppped(event: CdkDragDrop<string[]>) {
     this.pictureDrop.emit(event);
   }
 
