@@ -1,7 +1,15 @@
 const express = require('express');
+const sequelize = require('./database/database');
+
+sequelize.sync().then( () => {
+    console.log('DB Ready');
+});
+
+
 const app = express();
 const PORT = 8080;
 
+var tierListsRouter = require('./routes/tierLists');
 
 app.listen(PORT, () => {
     console.log(`listening on port -> ${PORT}`);
@@ -9,36 +17,8 @@ app.listen(PORT, () => {
 
 app.use( express.json());
 
-app.get('/api/tierList', (req, res) =>{
-    let status = 200;
-    let tierLists = [
-        {
-            id: 1,
-            name: 'A',
-            desc: 'DescA',
-            tiers: []
-        },
-        {
-            id: 2,
-            name: 'B',
-            desc: 'DescB',
-            tiers: []
-        },
-    ];
-    res.status(status).send(tierLists);
-});
 
-app.get('/api/tierList/:id', (req, res) =>{
-    let status = 200;
-    let { id } = req.params;
-    let tier = {
-        id: id,
-        name: 'A',
-        desc: 'DescA',
-        tiers: []
-    };
-    res.status(status).send(tier);
-});
+app.use('/api/tierList', tierListsRouter);
 
 app.use( (req, res) => {
     res.status(404);
