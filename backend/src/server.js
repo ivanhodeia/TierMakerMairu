@@ -2,6 +2,11 @@ const express = require('express');
 const app = express();
 const PORT = 8080;
 
+
+app.listen(PORT, () => {
+    console.log(`listening on port -> ${PORT}`);
+});
+
 app.use( express.json());
 
 app.get('/api/tierList', (req, res) =>{
@@ -33,9 +38,8 @@ app.get('/api/tierList/:id', (req, res) =>{
         tiers: []
     };
     res.status(status).send(tier);
-})
+});
 
-
-app.listen(PORT, () => {
-    console.log(`listening on port -> ${PORT}`);
-})
+app.use( (req, res) => {
+    res.status(404);
+});
