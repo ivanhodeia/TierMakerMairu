@@ -1,20 +1,17 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { getEmptyTierMakerElement, TierMakerElement } from './tier-maker-element.model';
+import { getEmptyTierMakerElement, TierMakerElement } from './models/tier-maker-element.model';
 import { TierModalComponent } from './tier-modal/tier-modal.component';
 
 const TIER_MAKER_DATA: TierMakerElement[] = [
-  {position: 1, color:'#ff8d00e6', name: '<3', pictures: ['https://robohash.org/mandarina', 'https://robohash.org/tng']},
-  {position: 2, color:'#ff0000', name: 'Hydrogen', pictures: ['https://robohash.org/1d', 'https://robohash.org/1dxd']},
-  {position: 3, color:'#00ffd5', name: 'Lithium', pictures: ['https://robohash.org/13d']},
-  {position: 4, color:'#14FF00', name: 'Beryllium', pictures: ['https://robohash.org/1ddsds']},
+  {id: '1', color:'#ff8d00e6', name: '<3', pictures: ['https://robohash.org/mandarina', 'https://robohash.org/tng']},
+  {id: '2', color:'#ff0000', name: 'Hydrogen', pictures: ['https://robohash.org/1d', 'https://robohash.org/1dxd']},
+  {id: '3', color:'#00ffd5', name: 'Lithium', pictures: ['https://robohash.org/13d']},
+  {id: '4', color:'#14FF00', name: 'Beryllium', pictures: ['https://robohash.org/1ddsds']},
   // {position: 5, name: 'Boron', pictures: ['https://robohash.org/1dfdsf']},
   // {position: 6, name: 'Carbon', pictures: ['https://robohash.org/1ddsd']},
   // {position: 7, name: 'Nitrogen', pictures: ['https://robohash.org/1dsdf']},
-  // {position: 8, name: 'Oxygen', pictures: ['https://robohash.org/1ddxsdfds']},
-  // {position: 9, name: 'Fluorine', pictures: ['https://robohash.org/1dsss']},
-  // {position: 10, name: 'Neon', pictures: ['https://robohash.org/1dxd']},
 ];
 
 const PICTURES_DATA: string[] = [
@@ -48,13 +45,14 @@ export class AppComponent {
   description: string = 'Descripción de la tier maker.';
 
   selectedTier: TierMakerElement = getEmptyTierMakerElement();
-
+  selectedIndex: number = -1;
+  
   constructor(public dialog: MatDialog) {}
 
   getAllListIds() {
     let l = [this.picturesGridId];
     for (let element of this.tableDataSource) {
-      l.push(element.name + '-' + element.position);
+      l.push(element.id);
     }
     return l;
   }
@@ -99,57 +97,67 @@ export class AppComponent {
 
   onAddTierButtonClicked() {
     this.selectedTier = getEmptyTierMakerElement();
+    this.selectedIndex = -1;
     this.openDialog();
   }
 
-  onEditTierButtonClicked(selectedPosition: number) {
-    let currentTier = this.getTierByPosition(selectedPosition);
+  onEditTierButtonClicked(selectedId: string) {
+    let selectedIndex = this.tableDataSource.findIndex( (tierInfo) => {
+      return tierInfo.id === selectedId;
+    });
+    let currentTier = this.tableDataSource[selectedIndex];
     if(currentTier){
+      this.selectedIndex = selectedIndex;
       this.selectedTier = {...currentTier};
       this.openDialog();
     }
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(TierModalComponent, {data: {tierToEdit: this.selectedTier}});
+    const dialogRef = this.dialog.open(TierModalComponent, {
+      data: {
+        tierToEdit: this.selectedTier,
+        isEdit: this.selectedIndex != -1,
+      }
+    });
   
     dialogRef.afterClosed().subscribe( (result) => {
       if(result.data){
         let currentTier = result.data;
         if(result.isDelete){
-          this.deleteTier(currentTier);
+          this.deleteTier(currentTier, this.selectedIndex);
         }
         else if(result.isClearImages){
-          this.clearImages(currentTier);
+          this.clearImages(currentTier, this.selectedIndex);
         }
         else{
-          if(currentTier.position == -1){
+          if(this.selectedIndex == -1){
             this.addNewTier(currentTier);
           }
           else{
-            this.editExistingTier(currentTier);
+            this.editExistingTier(currentTier, this.selectedIndex);
           }
         }
       }
     });
   }
 
-  onSwapUp(position: number) {
-    let currentTier = this.getTierByPosition(position);
-    let otherTier = this.getTierByPosition(position-1);
+  onSwapUp(selectedId: string) {
+    let index = this.tableDataSource.findIndex( (tierInfo) => {
+      return tierInfo.id === selectedId;
+    });
+    let currentTier = this.tableDataSource[index];
+    let otherTier = this.tableDataSource[index-1];
     this.swapTwoTierInfo(currentTier, otherTier);
   }
 
-  onSwapDown(position: number) {
-    let currentTier = this.getTierByPosition(position);
-    let otherTier = this.getTierByPosition(position+1);
+  onSwapDown(selectedId: string) {
+    let index = this.tableDataSource.findIndex( (tierInfo) => {
+      return tierInfo.id === selectedId;
+    });
+    let currentTier = this.tableDataSource[index];
+    let otherTier = this.tableDataSource[index+1];
     this.swapTwoTierInfo(currentTier, otherTier);
-  }
-
-  private getTierByPosition(position: number): TierMakerElement {
-    return this.tableDataSource.find( (tierInfo) =>{
-      return tierInfo.position === position;
-    }) ?? getEmptyTierMakerElement();
   }
 
   private swapTwoTierInfo(tierA: TierMakerElement, tierB: TierMakerElement): void {
@@ -164,35 +172,30 @@ export class AppComponent {
     tierB.pictures = tmpPictures;
   }
 
-  private clearImages(tierToClear: TierMakerElement) {
+  private clearImages(tierToClear: TierMakerElement, index: number) {
     this.gridDataSource = [...this.gridDataSource, ...tierToClear.pictures];
     tierToClear.pictures = [];
     let newData = [...this.tableDataSource];
-    newData[tierToClear.position-1] = {...tierToClear} as TierMakerElement;
+    newData[index] = {...tierToClear} as TierMakerElement;
     this.tableDataSource = newData;
   }
 
   private addNewTier(tierToAdd: TierMakerElement) {
-    tierToAdd.position = this.tableDataSource.length+1;
     let newData = [...this.tableDataSource];
     newData.push(tierToAdd);
     this.tableDataSource = newData;
   }
 
-  private editExistingTier(tierToModify: TierMakerElement) {
+  private editExistingTier(tierToModify: TierMakerElement, index: number) {
     let newData = [...this.tableDataSource];
-    newData[tierToModify.position-1] = {...tierToModify} as TierMakerElement;
+    newData[index] = {...tierToModify} as TierMakerElement;
     this.tableDataSource = newData;
   }
 
-  private deleteTier(tierToDelete: TierMakerElement) {
-    let newData = this.tableDataSource.filter( (tierInfo) => {
-      return tierInfo.position != tierToDelete.position;
-    });
+  private deleteTier(tierToDelete: TierMakerElement, index: number) {
+    let newData = this.tableDataSource.slice();
+    newData.splice(index, 1);
     this.gridDataSource = [...this.gridDataSource, ...tierToDelete.pictures];
-    this.tableDataSource = newData.map( (tierInfo, index) => {
-      tierInfo.position = index+1;
-      return tierInfo;
-    });
+    this.tableDataSource = [...newData];
   }
 }

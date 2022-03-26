@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-header *ngIf="json.title || json.subtitle">
+        <mat-card-title *ngIf="json.title">{{ json.title }}</mat-card-title>
+        <mat-card-subtitle *ngIf="json.subtitle">{{ json.subtitle }}</mat-card-subtitle>
+        <img mat-card-avatar *ngIf="json.headerPicture" src="json.headerPicture">
+    </mat-card-header>
+    <mat-card-content *ngIf="json.fields && json.fields.length > 0">
+        <div *ngFor="let fieldInfo of json.fields">
+            <ng-template *ngIf="fieldInfo.type === cardRendererTypeEnum.TEXT_FIELD">
+                <p>
+                    {{ fieldInfo.data }}
+                </p>
+            </ng-template>
+        </div>
+
+    </mat-card-content>
+    <mat-card-actions *ngIf="json.buttons && json.buttons.length > 0">
+        <button mat-button *ngFor="let buttonInfo of json.buttons">{{ buttonInfo.text }}</button>
+    </mat-card-actions>
+</mat-card>

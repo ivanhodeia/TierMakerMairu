@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter, SimpleChanges, OnChanges, Inject } from '@angular/core';
-import { getEmptyTierMakerElement, TierMakerElement } from '../tier-maker-element.model';
+import { Component, Input, Inject } from '@angular/core';
+import { getEmptyTierMakerElement, TierMakerElement } from '../models/tier-maker-element.model';
 
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -9,19 +9,19 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./tier-modal.component.scss']
 })
 export class TierModalComponent {
+  @Input() isEdit: boolean = false;
   tierToEdit: TierMakerElement = getEmptyTierMakerElement();
 
-  isEdit: boolean = false;
   modalTitle: string = "";
   isValid: boolean = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.tierToEdit = data.tierToEdit;
+    this.isEdit = data.isEdit;
     console.log("Hey", this.tierToEdit);
     this.isEdit = false;
       this.modalTitle = "New Tier";
-      if(this.tierToEdit.position != -1){
-        this.isEdit = true;
+      if(this.isEdit){
         this.modalTitle = "Edit Tier";
         this.isValid = true;
       }

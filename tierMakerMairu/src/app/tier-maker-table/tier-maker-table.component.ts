@@ -1,6 +1,6 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { TierMakerElement } from '../tier-maker-element.model';
+import { TierMakerElement } from '../models/tier-maker-element.model';
 
 @Component({
   selector: '[tier-maker-table]',
@@ -13,13 +13,13 @@ export class TierMakerTableComponent {
   @Input() dataSource: Array<TierMakerElement> = [];
   @Input() allListIds: Array<string> = [];
   @Output() pictureDrop: EventEmitter<any> = new EventEmitter();
-  @Output() editTier: EventEmitter<number> = new EventEmitter();
+  @Output() editTier: EventEmitter<string> = new EventEmitter();
 
-  @Output() swapUp: EventEmitter<number> = new EventEmitter();
-  @Output() swapDown: EventEmitter<number> = new EventEmitter();
+  @Output() swapUp: EventEmitter<string> = new EventEmitter();
+  @Output() swapDown: EventEmitter<string> = new EventEmitter();
 
-  onEditTierButtonClicked(event: number){
-    this.editTier.emit(event);
+  onEditTierButtonClicked(id: string){
+    this.editTier.emit(id);
   }
 
   onPictureDroppped(event: CdkDragDrop<string[]>) {
@@ -28,19 +28,19 @@ export class TierMakerTableComponent {
   }
 
   getCurrentId(element: TierMakerElement) {
-    return element.name + '-' + element.position;
+    return element.id;
   }
 
   getConnectedLists(currentId: string) {
     return this.allListIds.filter(value => value != currentId);
   }
 
-  onSwapButtonClicked(position: number, isUp: boolean) {
+  onSwapButtonClicked(id: string, isUp: boolean) {
     if(isUp){
-      this.swapUp.emit(position);
+      this.swapUp.emit(id);
     }
     else{
-      this.swapDown.emit(position);
+      this.swapDown.emit(id);
     }
   }
 }

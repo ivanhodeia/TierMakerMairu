@@ -9,11 +9,13 @@ import { PicturesGridComponent } from './pictures-grid/pictures-grid.component';
 import { TierMakerTableComponent } from './tier-maker-table/tier-maker-table.component';
 import { TierModalComponent } from './tier-modal/tier-modal.component';
 import { FormsModule } from '@angular/forms';
+import { CardRendererComponent } from './card-renderer/card-renderer.component';
 
 @NgModule({
   declarations: [
     PicturesGridComponent,
     TierMakerTableComponent,
+    CardRendererComponent,
     TierModalComponent,
     AppComponent
   ],
