@@ -10,6 +10,7 @@ import { TierMakerTableComponent } from './tier-maker-table/tier-maker-table.com
 import { TierModalComponent } from './tier-modal/tier-modal.component';
 import { FormsModule } from '@angular/forms';
 import { CardRendererComponent } from './card-renderer/card-renderer.component';
+import { TierListListComponent } from './tier-list-list/tier-list-list.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CardRendererComponent } from './card-renderer/card-renderer.component';
     TierMakerTableComponent,
     CardRendererComponent,
     TierModalComponent,
+    TierListListComponent,
     AppComponent
   ],
   entryComponents: [TierModalComponent],

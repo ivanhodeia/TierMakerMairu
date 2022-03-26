@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 enum CardRendererTypeEnum {
   TEXT_FIELD = "textField",
   IMAGE = "image"
@@ -10,35 +10,36 @@ enum CardRendererTypeEnum {
   styleUrls: ['./card-renderer.component.scss']
 })
 
-
 export class CardRendererComponent {
   cardRendererTypeEnum = CardRendererTypeEnum;
-  json: any = {};
+  @Input() json: any = undefined;
   
   constructor() {
-    this.json = {
-      title: "Título",
-      subtitle: "Sub",
-      fields: [
-        {
-          type: this.cardRendererTypeEnum.TEXT_FIELD,
-          data: "Texto1",
-        },
-        {
-          type: this.cardRendererTypeEnum.TEXT_FIELD,
-          data: "Texto1",
-        },
-      ],
-      buttons: [
-        {
-          text: "Botón1",
-          action: "algo",
-        },
-        {
-          text: "Botón 2",
-          action: "algo",
-        },
-      ],
+    if(!this.json){
+      this.json = {
+        title: "Título",
+        subtitle: "Sub",
+        fields: [
+          {
+            type: this.cardRendererTypeEnum.TEXT_FIELD,
+            data: "Texto1",
+          },
+          {
+            type: this.cardRendererTypeEnum.TEXT_FIELD,
+            data: "Texto1",
+          },
+        ],
+        buttons: [
+          {
+            text: "Botón1",
+            action: "algo",
+          },
+          {
+            text: "Botón 2",
+            action: "algo",
+          },
+        ],
+      };
     }
   }
 }

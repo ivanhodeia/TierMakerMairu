@@ -1,1 +1,3 @@
-Aquí se printean las cards ^^
+<div *ngFor="let tierListInfo of filteredLists">
+    <app-card-renderer [json]="tierListToCardJSON(tierListInfo)"></app-card-renderer>
+</div>

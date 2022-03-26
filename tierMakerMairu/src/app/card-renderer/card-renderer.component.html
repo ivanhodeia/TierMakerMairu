@@ -6,13 +6,10 @@
     </mat-card-header>
     <mat-card-content *ngIf="json.fields && json.fields.length > 0">
         <div *ngFor="let fieldInfo of json.fields">
-            <ng-template *ngIf="fieldInfo.type === cardRendererTypeEnum.TEXT_FIELD">
-                <p>
-                    {{ fieldInfo.data }}
-                </p>
-            </ng-template>
+            <p *ngIf="fieldInfo.type === cardRendererTypeEnum.TEXT_FIELD">
+                {{ fieldInfo.data }}
+            </p>
         </div>
-
     </mat-card-content>
     <mat-card-actions *ngIf="json.buttons && json.buttons.length > 0">
         <button mat-button *ngFor="let buttonInfo of json.buttons">{{ buttonInfo.text }}</button>
