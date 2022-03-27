@@ -22,13 +22,12 @@ router.get('/:id', (req, res) => {
         },
     }).then( (response) => {
         let tierList = response[0];
-        if(!tierList){
-            status = 400;
-            tierList = {
-                error: 'No Data',
-            };
+        if(tierList){
+            tierList = formatTierList(tierList);
         }
-        tierList = formatTierList(tierList);
+        else{
+            status = 400;
+        }
         res.status(status).send({data: tierList});
     });
 });
