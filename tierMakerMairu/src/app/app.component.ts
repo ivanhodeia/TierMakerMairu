@@ -17,7 +17,7 @@ const TIER_MAKER_DATA: TierMakerElement[] = [
   // {position: 10, name: 'Neon', pictures: ['https://robohash.org/1dxd']},
 ];
 
-const PICTURES_DATA: string[] = [
+let PICTURES_DATA: string[] = [
   'https://robohash.org/1d',
   'https://robohash.org/1d1',
   'https://robohash.org/1d3',
@@ -27,7 +27,25 @@ const PICTURES_DATA: string[] = [
   'https://robohash.org/1d7',
   'https://robohash.org/1d8',
   'https://robohash.org/1d9',
-  'https://robohash.org/1d10'
+  'https://robohash.org/1d10',
+  'https://robohash.org/2d2',
+  'https://robohash.org/2d3',
+  'https://robohash.org/2d4',
+  'https://robohash.org/2d5',
+  'https://robohash.org/2d6',
+  'https://robohash.org/2d7',
+  'https://robohash.org/2d8',
+  'https://robohash.org/2d9',
+  'https://robohash.org/2d10',
+  'https://robohash.org/3d3',
+  'https://robohash.org/3d3',
+  'https://robohash.org/3d4',
+  'https://robohash.org/3d5',
+  'https://robohash.org/3d6',
+  'https://robohash.org/3d7',
+  'https://robohash.org/3d8',
+  'https://robohash.org/3d9',
+  'https://robohash.org/3d10'
 ]
 
 const PICTURES_GRID_ID: string = 'pictures-grid';
@@ -62,6 +80,8 @@ export class AppComponent {
   //Je je mira v
   onPictureDroppped(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
+      console.log('[DRAG]', event.previousIndex, event.currentIndex);
+      console.log(event.container.data);
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(
@@ -112,7 +132,7 @@ export class AppComponent {
 
   openDialog() {
     const dialogRef = this.dialog.open(TierModalComponent, {data: {tierToEdit: this.selectedTier}});
-  
+
     dialogRef.afterClosed().subscribe( (result) => {
       if(result.data){
         let currentTier = result.data;

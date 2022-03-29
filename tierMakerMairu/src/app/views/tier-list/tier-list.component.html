@@ -1,0 +1,11 @@
+<mat-form-field appearance="outline">
+  <mat-label>Búsqueda</mat-label>
+  <input matInput [(ngModel)]="queryString" type="text" [required]="false">
+  <div class="icon-group" matSuffix>
+    <button *ngIf="queryString != ''" mat-icon-button aria-label="Clear" (click)="queryString = ''">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-icon>search</mat-icon>
+  </div>
+</mat-form-field>
+

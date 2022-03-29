@@ -1,3 +1,4 @@
+import { TierListModule } from './views/tier-list/tier-list.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularMaterialModule } from 'src/angular-material.module';
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     AngularMaterialModule,
     BrowserAnimationsModule,
     FormsModule,
+    TierListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
