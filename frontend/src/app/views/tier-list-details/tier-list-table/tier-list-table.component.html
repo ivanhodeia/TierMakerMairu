@@ -1,8 +1,23 @@
 <mat-card id="table">
   <mat-card-content>
     <mat-list role="list">
-      <mat-list-item role="listitem" *ngFor="let item of tierList.items">
-        <div [ngStyle]="{ 'background-color': item.color }" class="header-cell">{{ item.text }}</div>
+      <mat-list-item role="listitem" *ngFor="let item of tierList.items; let i = index" color="accent">
+        <div class="move-cell">
+          <button mat-icon-button aria-label="Move up icon" (click)="onMoveUpButtonClicked(i)">
+            <mat-icon>expand_less</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Move down icon" (click)="onMoveDownButtonClicked(i)">
+            <mat-icon>expand_more</mat-icon>
+          </button>
+        </div>
+        <div class="config-cell">
+          <button mat-icon-button aria-label="Settings icon">
+            <mat-icon>settings</mat-icon>
+          </button>
+        </div>
+        <div [ngStyle]="{ 'background-color': item.color }" class="header-cell">
+          <p>{{ item.text }}</p>
+        </div>
         <div
           class="pictures-container"
           [id]="item.id"

@@ -2,12 +2,14 @@ img {
   max-height: 100px;
 }
 
-.title-container {
+.description-container {
   padding: 25px 40px 0;
+  padding-top: 0;
+  padding-left: 16px;
   font-size: 18px;
   line-height: 1.5;
   display: flex;
-  justify-content: center;
+  justify-content: start;
 }
 
 ::ng-deep .cdk-drag-preview {
@@ -33,8 +35,15 @@ img {
 
 :host {
   display: flex;
-  min-height: 100vh;
-  min-width: calc(100vw - 250px);
-  width: 100%;
+  // min-width: calc(100vw - 300px);
+  // width: 100%;
   flex-direction: column;
+  padding: 40px;
+  padding-top: 10px;
+  gap: 20px;
+}
+
+mat-card {
+  border: 0;
+  box-shadow: unset !important;
 }

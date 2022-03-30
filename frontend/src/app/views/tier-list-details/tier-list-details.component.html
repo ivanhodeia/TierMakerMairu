@@ -1,27 +1,43 @@
-<!-- {{ tierList.title }}
-{{ tierList.description }} -->
-<!-- banner?: string;
-category: Category;
-favorite -->
+<mat-toolbar>
+  <span>{{ tierList.title }}</span>
+  <span class="spacer"></span>
 
-<mat-card class="example-card">
-  <mat-card-header>
-    <img mat-card-avatar [src]="tierList.banner" alt="Photo of a Shiba Inu">
-    <mat-card-title>{{ tierList.title }}</mat-card-title>
-    <mat-card-subtitle>{{ tierList.description }}</mat-card-subtitle>
-  </mat-card-header>
-</mat-card>
+  <button mat-icon-button
+    aria-label="Clear icon" (click)="onClearAllButtonClicked()"
+    matTooltip="Vaciar todas las filas"
+  >
+    <mat-icon>clear_all</mat-icon>
+  </button>
+  <button mat-icon-button
+    aria-label="Fill icon" (click)="onFillTiersRandomlyButtonClicked()"
+    matTooltip="Rellenar todas las filas"
+  >
+    <mat-icon>shuffle</mat-icon>
+  </button>
+  <button mat-icon-button
+    aria-label="Plus icon" (click)="onAddTierButtonClicked()"
+    matTooltip="Añadir nueva fila"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="description-container">
+  {{ tierList.description }}
+</div>
 
 <div
   [tierList]="tierList"
   [allListIds]="getAllIds()"
-  (pictureDrop)="onPictureDroppped($event)"
+  (pictureDrop)="onPictureDropped($event)"
+  (moveUp)="onMoveUpButtonClicked($event)"
+  (moveDown)="onMoveDownButtonClicked($event)"
   tier-list-table
 ></div>
 <div
   [pictures]="pictures"
   [allListIds]="getAllIds()"
   [id]="getPicturesContainerId()"
-  (pictureDrop)="onPictureDroppped($event)"
+  (pictureDrop)="onPictureDropped($event)"
   pictures-list
 ></div>
