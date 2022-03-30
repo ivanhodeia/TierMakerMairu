@@ -1,0 +1,399 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a simple Tier List Maker. You can create, update and delete tier lists.",
+    "version": "0.1.0",
+    "title": "Tier Maker"
+  },
+  "host": "localhost:8080",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "tierlists",
+      "description": "Tier List management utilities"
+    },
+    {
+      "name": "pictures",
+      "description": "Pictures"
+    },
+    {
+      "name": "auth",
+      "description": "Authentication and user profile"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/tierlists": {
+      "get": {
+        "tags": [
+          "tierlists"
+        ],
+        "summary": "Retrieves all Tier List templates",
+        "description": "Multiple status values can be provided with comma separated strings",
+        "operationId": "getAllTierLists",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TierList"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/tierlists/{id}": {
+      "get": {
+        "tags": [
+          "tierlists"
+        ],
+        "summary": "Retrieves the Tier List template with the corresponding id",
+        "operationId": "getTierListByID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Tier List Template",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TierList"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "tierlists"
+        ],
+        "summary": "Creates or updates a Tier List data",
+        "operationId": "putTierList",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Tier List Template",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Tier List Object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TierList"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Modified successfully",
+            "schema": {
+              "$ref": "#/definitions/TierList"
+            }
+          },
+          "201": {
+            "description": "Created successfully",
+            "schema": {
+              "$ref": "#/definitions/TierList"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "tierlists"
+        ],
+        "summary": "Deletes a Tier List",
+        "operationId": "deleteTierList",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Tier List Template",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted successfully",
+            "schema": {
+              "$ref": "#/definitions/TierList"
+            }
+          },
+          "400": {
+            "description": "Can't find Tier List"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/pictures": {
+      "get": {
+        "tags": [
+          "pictures"
+        ],
+        "summary": "Retrieves a number of pictures of a certain category",
+        "operationId": "getPictures",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Picture Category",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "custom",
+              "robots"
+            ]
+          },
+          {
+            "name": "_limit",
+            "in": "query",
+            "description": "Max picture number",
+            "required": false,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "pictures": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Logs in a user and returns an access token",
+        "operationId": "login",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Email and Password",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accessToken": {
+                  "type": "string"
+                },
+                "user": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/profile": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Gets User Data",
+        "operationId": "getUserInfo",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "LoginUser": {
+      "type": "object",
+      "required": [
+        "email",
+        "password"
+      ],
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "required": [
+        "id",
+        "email"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "Category": {
+      "type": "string",
+      "enum": [
+        "custom",
+        "robots"
+      ]
+    },
+    "TierItem": {
+      "type": "object",
+      "required": [
+        "id",
+        "color",
+        "text",
+        "pictures"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "pictures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "TierList": {
+      "type": "object",
+      "required": [
+        "id",
+        "description",
+        "category",
+        "nPictures",
+        "title",
+        "items",
+        "unassignedImages",
+        "favorite"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "banner": {
+          "type": "string"
+        },
+        "category": {
+          "$ref": "#/definitions/Category"
+        },
+        "nPictures": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TierItem"
+          }
+        },
+        "unassignedImages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "favorite": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

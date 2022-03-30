@@ -1,0 +1,482 @@
+{
+	"info": {
+		"_postman_id": "63f204c7-da66-4924-8eec-d57a69f0fa82",
+		"name": "TierListMaker Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@tiermaker.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/auth/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tierlists",
+			"item": [
+				{
+					"name": "Get All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", () => {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 401]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Comprobación Tipos respuesta.\", () => {\r",
+									"    if(pm.response.code !== 401){\r",
+									"        let responseJson = pm.response.json();\r",
+									"        let jsonData = responseJson;\r",
+									"        jsonData.forEach( (element) => {\r",
+									"            pm.expect(element.id).to.be.a('string');\r",
+									"            pm.expect(element.description).to.be.a('string');\r",
+									"            if(element.banner){\r",
+									"                pm.expect(element.banner).to.be.a('string');\r",
+									"            }\r",
+									"            pm.expect(element.category).to.be.a('string');\r",
+									"            pm.expect(element.nPictures).to.be.a('number');\r",
+									"            pm.expect(element.title).to.be.a('string');\r",
+									"            pm.expect(element.items).to.be.a('array');\r",
+									"            if(element.items.length > 0){\r",
+									"                let tierToTest = element.items[0];\r",
+									"                pm.expect(tierToTest.id).to.be.a('string');\r",
+									"                pm.expect(tierToTest.color).to.be.a('string');\r",
+									"                pm.expect(tierToTest.text).to.be.a('string');\r",
+									"                pm.expect(tierToTest.pictures).to.be.a('array');\r",
+									"            }\r",
+									"            pm.expect(element.unassignedImages).to.be.a('array');\r",
+									"            pm.expect(element.favorite).to.be.a('boolean');\r",
+									"        });\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tierlists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tierlists"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "20",
+									"description": "Items per page (Between 10 and 200)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", () => {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Comprobación Resultado.\", () => {\r",
+									"    if(pm.response.code === 200){\r",
+									"        let responseJson = pm.response.json();\r",
+									"        let element = responseJson;\r",
+									"        pm.expect(element.id).to.be.a('string');\r",
+									"        pm.expect(element.description).to.be.a('string');\r",
+									"        if(element.banner){\r",
+									"            pm.expect(element.banner).to.be.a('string');\r",
+									"        }\r",
+									"        pm.expect(element.category).to.be.a('string');\r",
+									"        pm.expect(element.nPictures).to.be.a('number');\r",
+									"        pm.expect(element.title).to.be.a('string');\r",
+									"        pm.expect(element.items).to.be.a('array');\r",
+									"        if(element.items.length > 0){\r",
+									"            let tierToTest = element.items[0];\r",
+									"            pm.expect(tierToTest.id).to.be.a('string');\r",
+									"            pm.expect(tierToTest.color).to.be.a('string');\r",
+									"            pm.expect(tierToTest.text).to.be.a('string');\r",
+									"            pm.expect(tierToTest.pictures).to.be.a('array');\r",
+									"        }\r",
+									"        pm.expect(element.unassignedImages).to.be.a('array');\r",
+									"        pm.expect(element.favorite).to.be.a('boolean');\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tierlists/uuid5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tierlists",
+								"uuid5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", () => {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 401]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Comprobación Resultado.\", () => {\r",
+									"        if(pm.response.code !== 401){\r",
+									"        let responseJson = pm.response.json();\r",
+									"        let jsonData = responseJson;\r",
+									"        pm.expect(jsonData.id).to.be.a('string');\r",
+									"        pm.expect(jsonData.description).to.be.a('string');\r",
+									"        if(jsonData.banner){\r",
+									"            pm.expect(jsonData.banner).to.be.a('string');\r",
+									"        }\r",
+									"        pm.expect(jsonData.category).to.be.a('string');\r",
+									"        pm.expect(jsonData.nPictures).to.be.a('number');\r",
+									"        pm.expect(jsonData.title).to.be.a('string');\r",
+									"        pm.expect(jsonData.items).to.be.a('array');\r",
+									"        if(jsonData.items.length > 0){\r",
+									"            let tierToTest = jsonData.items[0];\r",
+									"            pm.expect(tierToTest.id).to.be.a('string');\r",
+									"            pm.expect(tierToTest.color).to.be.a('string');\r",
+									"            pm.expect(tierToTest.text).to.be.a('string');\r",
+									"            pm.expect(tierToTest.pictures).to.be.a('array');\r",
+									"        }\r",
+									"        pm.expect(jsonData.unassignedImages).to.be.a('array');\r",
+									"        pm.expect(jsonData.favorite).to.be.a('boolean');\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"description\": \"Desc {{currentId}}\",\r\n        \"banner\": \"https://picsum.photos/800/500?random={{currentId}}\",\r\n        \"category\": \"robots\",\r\n        \"nPictures\": 10,\r\n        \"title\": \"Prueba {{currentId}}\",\r\n        \"items\": [\r\n            {\r\n                \"id\":\"uuid1\",\r\n                \"color\": \"#FFFFFF\",\r\n                \"text\": \"tier1\",\r\n                \"pictures\": [\"https://robohash.org/aaaa\"]\r\n            }\r\n        ],\r\n        \"unassignedImages\": [\"http://robohash.org/hola\"],\r\n        \"favorite\": false\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tierlists/uuid{{currentId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tierlists",
+								"uuid{{currentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put With PreScript",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", () => {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 401]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Comprobación Resultado.\", () => {\r",
+									"    if(pm.response.code !== 401){\r",
+									"        let responseJson = pm.response.json();\r",
+									"        let jsonData = responseJson;\r",
+									"        pm.expect(jsonData.id).to.be.a('string');\r",
+									"        pm.expect(jsonData.description).to.be.a('string');\r",
+									"        if(jsonData.banner){\r",
+									"            pm.expect(jsonData.banner).to.be.a('string');\r",
+									"        }\r",
+									"        pm.expect(jsonData.category).to.be.a('string');\r",
+									"        pm.expect(jsonData.nPictures).to.be.a('number');\r",
+									"        pm.expect(jsonData.title).to.be.a('string');\r",
+									"        pm.expect(jsonData.items).to.be.a('array');\r",
+									"        if(jsonData.items.length > 0){\r",
+									"            let tierToTest = jsonData.items[0];\r",
+									"            pm.expect(tierToTest.id).to.be.a('string');\r",
+									"            pm.expect(tierToTest.color).to.be.a('string');\r",
+									"            pm.expect(tierToTest.text).to.be.a('string');\r",
+									"            pm.expect(tierToTest.pictures).to.be.a('array');\r",
+									"        }\r",
+									"        pm.expect(jsonData.unassignedImages).to.be.a('array');\r",
+									"        pm.expect(jsonData.favorite).to.be.a('boolean');\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let id = pm.environment.get(\"id\");\r",
+									"console.log(\"Id-> \", id);\r",
+									"if(!id){\r",
+									"    id = 0;\r",
+									"}\r",
+									"id = parseInt(id);\r",
+									"id++;\r",
+									"pm.environment.set(\"id\", id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"description\": \"Desc {{id}}\",\r\n        \"banner\": null,\r\n        \"category\": \"robots\",\r\n        \"nPictures\": 10,\r\n        \"title\": \"Prueba {{id}}\",\r\n        \"items\": [\r\n            {\r\n                \"id\":\"uuid1\",\r\n                \"color\": \"#FFFFFF\",\r\n                \"text\": \"tier1\",\r\n                \"pictures\": [\"https://robohash.org/aaaa\"]\r\n            }\r\n        ],\r\n        \"unassignedImages\": [\"http://robohash.org/hola\"],\r\n        \"favorite\": false\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tierlists/uuid{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tierlists",
+								"uuid{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", () => {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Comprobación Resultado.\", () => {\r",
+									"    if(pm.response.code === 200){\r",
+									"        let responseJson = pm.response.json();\r",
+									"        let jsonData = responseJson;\r",
+									"        pm.expect(jsonData.id).to.be.a('string');\r",
+									"        pm.expect(jsonData.description).to.be.a('string');\r",
+									"        if(jsonData.banner){\r",
+									"            pm.expect(jsonData.banner).to.be.a('string');\r",
+									"        }\r",
+									"        pm.expect(jsonData.category).to.be.a('string');\r",
+									"        pm.expect(jsonData.nPictures).to.be.a('number');\r",
+									"        pm.expect(jsonData.title).to.be.a('string');\r",
+									"        pm.expect(jsonData.items).to.be.a('array');\r",
+									"        if(jsonData.items.length > 0){\r",
+									"            let tierToTest = jsonData.items[0];\r",
+									"            pm.expect(tierToTest.id).to.be.a('string');\r",
+									"            pm.expect(tierToTest.color).to.be.a('string');\r",
+									"            pm.expect(tierToTest.text).to.be.a('string');\r",
+									"            pm.expect(tierToTest.pictures).to.be.a('array');\r",
+									"        }\r",
+									"        pm.expect(jsonData.unassignedImages).to.be.a('array');\r",
+									"        pm.expect(jsonData.favorite).to.be.a('boolean');\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tierlists/uuid8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tierlists",
+								"uuid8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pictures",
+			"item": [
+				{
+					"name": "Get Pictures",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pictures?category=robots",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pictures"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "robots"
+								},
+								{
+									"key": "_limit",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
