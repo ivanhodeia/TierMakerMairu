@@ -11,7 +11,7 @@ var router = express.Router();
 router.get('/profile', authenticateToken, (req, res) => {
     let status = 200;
     User.findAll({
-        atributes: ['id', 'email'],
+        attributes: ['id', 'email'],
     }).then( (response) => {
         res.status(status).send(response);
     });
