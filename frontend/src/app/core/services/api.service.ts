@@ -15,11 +15,10 @@ const HEADERS = {
 	providedIn: 'root'
 })
 export class ApiService {
-	get<Type>(path: string, params: HttpParams = new HttpParams()): Observable<Type> {
+	get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
 		return this.http.get(`${environment.API_URL}${path}`, { params: params, headers: HEADERS })
       .pipe(
-        tap(() => console.log('GET: ', path)),
-        map(data => data as Type)
+        tap(() => console.log('GET: ', path))
       );
 	}
 
@@ -35,7 +34,7 @@ export class ApiService {
 	}
 
 	post(path: string, body: any = {}): Observable<any> {
-    let showNotifications = path.includes('auth/');
+    let showNotifications = !path.includes('auth/');
 		return this.http.post(
 			`${environment.API_URL}${path}`,
 			JSON.stringify(body),
@@ -43,18 +42,18 @@ export class ApiService {
 		).pipe(tap({
       next: () => {
         if (showNotifications) {
-          this.snackbarService.setInfo('Actualizado con éxito', SnackbarAction.Confirm);
+          this.snackbarService.setInfo('Creado con éxito', SnackbarAction.Confirm);
         }
       },
       error: () => {
         if (showNotifications) {
-          this.snackbarService.setInfo('No se ha podido actualizar', SnackbarAction.Confirm);
+          this.snackbarService.setInfo('No se ha podido crear', SnackbarAction.Confirm);
         }
       }
   }));
 	}
 
-	delete(path: string, object?: any): Observable<any> {
+	delete(path: string): Observable<any> {
     return this.http.delete(
 			`${environment.API_URL}${path}`,
       { headers: HEADERS }

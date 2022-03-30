@@ -15,20 +15,14 @@
       *ngIf="!isLoginRoute()"
     ></header>
 
-    <ng-template [ngIf]="!isLoginRoute()">
-      <mat-drawer-container class="example-container">
-        <mat-drawer mode="side" opened>
-          <div [tierListItems]="tierListItems" tier-sidebar></div>
-        </mat-drawer>
-        <mat-drawer-content>
-          <router-outlet></router-outlet>
-        </mat-drawer-content>
-      </mat-drawer-container>
-    </ng-template>
-
-    <ng-template [ngIf]="isLoginRoute()">
-      <router-outlet></router-outlet>
-    </ng-template>
+    <mat-drawer-container>
+      <mat-drawer mode="side" opened *ngIf="!isLoginRoute()">
+        <div [tierListItems]="tierListItems" (elementSelect)="onSidebarElementSelected($event)" tier-sidebar></div>
+      </mat-drawer>
+      <mat-drawer-content>
+        <router-outlet></router-outlet>
+      </mat-drawer-content>
+    </mat-drawer-container>
   </main>
 </div>
 

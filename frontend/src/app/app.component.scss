@@ -25,3 +25,8 @@ main {
 .mat-drawer {
   width: 220px;
 }
+
+.mat-drawer-content {
+  height: 100%;
+  min-height: 100vh;
+}

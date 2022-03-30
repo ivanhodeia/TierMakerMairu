@@ -34,8 +34,8 @@ export class TierListApiService {
       })).subscribe();
   }
 
-  getById(tierList: TierList): Observable<TierList> {
-    return this.apiService.get(`/tierlists/${tierList.id}`);
+  getById(id: string): Observable<TierList> {
+    return this.apiService.get(`/tierlists/${id}`);
   }
 
   saveOrUpdate(tierList: TierList): Observable<any> {

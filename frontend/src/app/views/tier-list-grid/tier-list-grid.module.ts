@@ -21,6 +21,6 @@ import { TierListGridPage } from './tier-list-grid.component';
     FormsModule,
     MaterialModule
   ],
-  bootstrap: [TierListGridPage]
+  exports: [TierListGridPage]
 })
 export class TierListGridModule { }

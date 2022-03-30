@@ -1,0 +1,25 @@
+
+
+
+
+
+  <!-- id: string,
+  color: string,
+  text: string,
+  pictures: Array<string> -->
+
+
+<mat-card id="table">
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let item of tierList.items">
+        <div [ngStyle]="{ 'background-color': item.color }" class="header-cell">{{ item.text }}</div>
+        <mat-list class="horizontal-orientation" role="list">
+          <mat-list-item role="listitem" *ngFor="let picture of item.pictures">
+            <img [src]="item.picture">
+          </mat-list-item>
+        </mat-list>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

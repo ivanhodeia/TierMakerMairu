@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatSelectChange } from '@angular/material/select';
 import { TierList } from 'src/app/core';
 
 @Component({
@@ -8,9 +9,9 @@ import { TierList } from 'src/app/core';
 })
 export class SidebarComponent {
   @Input() tierListItems: Array<TierList> = [];
+  @Output() elementSelect: EventEmitter<any> = new EventEmitter();
 
-  onAddNewTierListButtonClicked() {
-    console.log('Add new tier list!');
+  onElementSelected(event: MatSelectChange) {
+    this.elementSelect.emit(event);
   }
-
 }

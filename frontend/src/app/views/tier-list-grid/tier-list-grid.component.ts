@@ -1,11 +1,10 @@
-import { SnackbarAction } from './../../core/enums/snackbar-action.enum';
 import { TierListApiService } from './../../core/services/tier-list-api.service';
 import { SearchService } from './../../core/services/search.service';
 import { Component } from '@angular/core';
-import { TierList } from 'src/app/core';
+import { ROUTE, TierList } from 'src/app/core';
 import { tap } from 'rxjs/operators';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'div[tier-list-grid]',
@@ -39,6 +38,10 @@ export class TierListGridPage {
       .subscribe()
   }
 
+  onCardClicked(tierList: TierList) {
+    this.router.navigate([`/${ROUTE.TierListDetails}/${tierList.id}`]);
+  }
+
   onTabClicked(event: MatTabChangeEvent) {
     this.filterByFav = event.index == 1;
     this.searchService.resetSearchQuery();
@@ -49,8 +52,11 @@ export class TierListGridPage {
 
   constructor(
     private searchService: SearchService,
-    private tierListApiService: TierListApiService
-  ) {
+    private tierListApiService: TierListApiService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
     this.searchService.getSearchQuery().subscribe(data => {
       this.querySearch = data;
       this.filteredTierListItems = this.getFilteredTierListItems();

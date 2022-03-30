@@ -43,6 +43,12 @@ export class AppComponent {
     this.authService.logout();
   }
 
+  onSidebarElementSelected(event: any) {
+    console.log(event);
+    let id = event.option.value.id;
+    this.router.navigate([`./${ROUTE.TierListDetails}/${id}`]);
+  }
+
   constructor(
     private router: Router,
     private tierListApiService: TierListApiService,

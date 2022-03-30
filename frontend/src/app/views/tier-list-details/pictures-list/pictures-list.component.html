@@ -1,0 +1,9 @@
+<mat-card id="pictures">
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let picture of pictures">
+        <img [src]="picture">
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

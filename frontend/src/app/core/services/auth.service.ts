@@ -85,6 +85,7 @@ export class AuthService {
   private goToCurrentPage() {
     this.router.initialNavigation();
     let pathname = window.location.pathname;
+    console.log('PATHNAME: ', pathname);
     if (pathname == '/') {
       this.router.navigate([`./${ROUTE.TierListGrid}`]);
     } else {
