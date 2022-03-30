@@ -1,11 +1,10 @@
-import { ApiService } from './core/services/api.service';
 import { SnackbarService } from './core/services/snackbar.service';
 import { TierListApiService } from './core/services/tier-list-api.service';
 import { AuthService } from './core/services/auth.service';
 import { SearchService } from './core/services/search.service';
 import { ROUTE } from './core/consts/route.const';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ViewChild } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { TierList } from './core';
 import { MatDrawer } from '@angular/material/sidenav';
 
@@ -47,14 +46,11 @@ export class AppComponent {
   }
 
   onSidebarElementSelected(event: any) {
-    console.log(event);
     let id = event.option.value.id;
-    this.drawer.close();
     this.router.navigate([`./${ROUTE.TierListDetails}/${id}`]);
   }
 
   onLogoClicked() {
-    this.drawer.open();
     this.router.navigate([`./${ROUTE.TierListGrid}`]);
   }
 
@@ -68,6 +64,7 @@ export class AppComponent {
     this.searchService.needsReset().subscribe(value => this.resetSearchQuery = value);
     this.fetchData();
     this.runNotifications();
+    this.setSidebarToggler();
   }
 
   private fetchData() {
@@ -76,5 +73,16 @@ export class AppComponent {
 
   private runNotifications() {
     this.snackbarService.new.subscribe((value) => value ? this.snackbarService.open() : '');
+  }
+
+  private setSidebarToggler() {
+    this.router.events.subscribe((val) => {
+      console.log(val);
+      if (val instanceof NavigationEnd && this.drawer) {
+        (this.router.url == `/${ROUTE.TierListGrid}`)
+        ? this.drawer.open()
+        : this.drawer.close();
+      }
+    });
   }
 }
