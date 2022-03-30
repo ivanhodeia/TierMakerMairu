@@ -1,24 +1,20 @@
-
-
-
-
-
-  <!-- id: string,
-  color: string,
-  text: string,
-  pictures: Array<string> -->
-
-
 <mat-card id="table">
   <mat-card-content>
     <mat-list role="list">
       <mat-list-item role="listitem" *ngFor="let item of tierList.items">
         <div [ngStyle]="{ 'background-color': item.color }" class="header-cell">{{ item.text }}</div>
-        <mat-list class="horizontal-orientation" role="list">
-          <mat-list-item role="listitem" *ngFor="let picture of item.pictures">
-            <img [src]="item.picture">
-          </mat-list-item>
-        </mat-list>
+        <div
+          class="pictures-container"
+          [id]="item.id"
+          [cdkDropListData]="item.pictures"
+          (cdkDropListDropped)="onPictureDroppped($event)"
+          [cdkDropListConnectedTo]="allListIds"
+          cdkDropListOrientation="horizontal"
+          cdkDropList
+        >
+          <img [src]="picture" *ngFor="let picture of item.pictures" [cdkDragData]="picture" class="drag-box" cdkDrag>
+
+        </div>
       </mat-list-item>
     </mat-list>
   </mat-card-content>

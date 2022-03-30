@@ -1,4 +1,6 @@
+import { ROUTE } from 'src/app/core';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'nav[tier-nav-bar]',
@@ -7,6 +9,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class NavBarComponent {
   @Output() logout: EventEmitter<any> = new EventEmitter();
+  @Output() logoClick: EventEmitter<any> = new EventEmitter();
 
   onAddNewTierListButtonClicked() {
     console.log('Add new tier list!');
@@ -16,4 +19,7 @@ export class NavBarComponent {
     this.logout.emit();
   }
 
+  onLogoClicked() {
+    this.logoClick.emit();
+  }
 }

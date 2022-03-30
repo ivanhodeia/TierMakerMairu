@@ -1,7 +1,7 @@
 <mat-card *ngIf="tierList">
   <img mat-card-image [src]="tierList.banner" *ngIf="tierList.banner" alt="Imagen de la card">
   <mat-card-content>
-    <mat-card-title>
+    <mat-card-title (click)="$event.stopImmediatePropagation()">
       {{ tierList.title }}
       <button mat-icon-button color="warn" aria-label="Favorito" (click)="onToggleFavoriteValueButtonClicked()">
         <mat-icon *ngIf="tierList.favorite">star</mat-icon>
@@ -13,7 +13,7 @@
     </mat-card-subtitle>
     <p class="description">{{ tierList.description }}</p>
   </mat-card-content>
-  <mat-card-actions align="end">
+  <mat-card-actions align="end" (click)="$event.stopImmediatePropagation()">
     <button (click)="onEditButtonClicked()" color="primary" mat-button>Editar</button>
     <button (click)="onRemoveButtonClicked()" mat-button>Borrar</button>
   </mat-card-actions>

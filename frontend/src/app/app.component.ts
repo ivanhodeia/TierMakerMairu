@@ -4,9 +4,10 @@ import { TierListApiService } from './core/services/tier-list-api.service';
 import { AuthService } from './core/services/auth.service';
 import { SearchService } from './core/services/search.service';
 import { ROUTE } from './core/consts/route.const';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { SnackbarAction, TierList } from './core';
+import { TierList } from './core';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +15,16 @@ import { SnackbarAction, TierList } from './core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @ViewChild('drawer') drawer: MatDrawer;
+
   tierListItems: Array<TierList> = [];
   resetSearchQuery: boolean = false;
 
   getViewTitle() {
     if (this.router.url == `/${ROUTE.TierListGrid}`) {
-      return 'Listado'
+      return 'Listado';
     }
-    return 'Detalle'
+    return 'Detalle';
   }
 
   hasSearch() {
@@ -46,7 +49,13 @@ export class AppComponent {
   onSidebarElementSelected(event: any) {
     console.log(event);
     let id = event.option.value.id;
+    this.drawer.close();
     this.router.navigate([`./${ROUTE.TierListDetails}/${id}`]);
+  }
+
+  onLogoClicked() {
+    this.drawer.open();
+    this.router.navigate([`./${ROUTE.TierListGrid}`]);
   }
 
   constructor(

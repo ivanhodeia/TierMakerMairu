@@ -6,3 +6,13 @@ body {
   margin: 0 !important;
   padding-bottom: 0 !important;
 }
+
+mat-list.horizontal-orientation {
+  padding: 0;
+
+  mat-list-item {
+    display: inline-block;
+    height: auto;
+    width: auto;
+  }
+}

@@ -1,6 +1,7 @@
 <nav
   tier-nav-bar
   (logout)="onLogoutButtonClicked()"
+  (logoClick)="onLogoClicked()"
   *ngIf="!isLoginRoute()"
 ></nav>
 
@@ -11,12 +12,13 @@
       [hasSearch]="hasSearch()"
       [reset]="resetSearchQuery"
       (inputSubmit)="onSearchQueryUpdated($event)"
+      (menuClick)="drawer.toggle()"
       tier-main-header
       *ngIf="!isLoginRoute()"
     ></header>
 
-    <mat-drawer-container>
-      <mat-drawer mode="side" opened *ngIf="!isLoginRoute()">
+    <mat-drawer-container [class.full]="isLoginRoute()">
+      <mat-drawer mode="side" opened *ngIf="!isLoginRoute()" #drawer>
         <div [tierListItems]="tierListItems" (elementSelect)="onSidebarElementSelected($event)" tier-sidebar></div>
       </mat-drawer>
       <mat-drawer-content>

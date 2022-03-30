@@ -13,6 +13,14 @@ h1 {
   color: #fff;
 }
 
+mat-icon {
+  color: #fff;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .input-search {
   background-color: unset;
   padding: 0;

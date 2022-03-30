@@ -9,8 +9,10 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angu
 })
 export class TierListTableComponent {
   @Input() tierList: TierList = createEmptyTierList();
+  @Input() allListIds: Array<string> = [];
+  @Output() pictureDrop: EventEmitter<any> = new EventEmitter();
 
-  getArrayFromNumber(n: number) {
-    return new Array(n).fill(0);
+  onPictureDroppped(event: CdkDragDrop<string[]>) {
+    this.pictureDrop.emit(event);
   }
 }
