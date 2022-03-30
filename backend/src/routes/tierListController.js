@@ -1,19 +1,20 @@
 var express = require('express');
 const TierList = require ('../models/TierList');
+const { authenticateToken } = require('../tokenController');
 var router = express.Router();
 
 /** GET ALL */
-router.get('/', (req, res) => {
+router.get('/', authenticateToken, (req, res) => {
     let status = 200;
     TierList.findAll().then( (response) => {
         let tierLists = response.map( (tierListInfo) => {
             return formatTierList(tierListInfo);
         });
-        res.status(status).send({data: tierLists});
+        res.status(status).send(tierLists);
     });
 });
 /** GET ONE */
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticateToken, (req, res) => {
     let status = 200;
     let { id } = req.params;
     TierList.findAll({
@@ -28,11 +29,11 @@ router.get('/:id', (req, res) => {
         else{
             status = 400;
         }
-        res.status(status).send({data: tierList});
+        res.status(status).send(tierList);
     });
 });
 /** PUT */
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticateToken, (req, res) => {
     //Aquí hay que modificar para comprobar si ya existe y editar en vez de insertar en ese caso ^^
     let { id } = req.params;
     TierList.findAll({
@@ -64,7 +65,7 @@ router.put('/:id', (req, res) => {
 function saveTierList(res, newTierList) {
     TierList.create(newTierList).then((response) => {
         let createdTierList = formatTierList(response);
-        res.status(201).send({data: createdTierList});
+        res.status(201).send(createdTierList);
     });
 }
 
@@ -75,11 +76,11 @@ function updateTierList(res, tierListToUpdate) {
         },
     }).then((numAffected) => {
         let updatedTierList = formatTierList(tierListToUpdate);
-        res.status(200).send({data: updatedTierList});
+        res.status(200).send(updatedTierList);
     });
 }
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', authenticateToken, (req, res) => {
     let { id } = req.params;
     TierList.findAll({
         where: {
@@ -97,9 +98,7 @@ router.delete('/:id', (req, res) => {
                     id: id,
                 },
             }).then( (response) => {
-                res.status(200).send({
-                    data: deletedTierList,
-                });
+                res.status(200).send(deletedTierList);
             });
         }
     });
@@ -107,11 +106,11 @@ router.delete('/:id', (req, res) => {
 
 function formatTierList(tierList, isSave = false) {
     if(isSave){
-        tierList.tiers = JSON.stringify(tierList.tiers);
+        tierList.items = JSON.stringify(tierList.items);
         tierList.unassignedImages = JSON.stringify(tierList.unassignedImages);
     }
     else{
-        tierList.tiers = JSON.parse(tierList.tiers);
+        tierList.items = JSON.parse(tierList.items);
         tierList.unassignedImages = JSON.parse(tierList.unassignedImages);
     }
     return tierList;

@@ -10,17 +10,30 @@ TierList.init({
             type: DataTypes.UUID,
             primaryKey: true
         },
-        name: {
-            type: DataTypes.STRING
-        },
         description: {
             type: DataTypes.STRING
         },
-        tiers: {
+        banner: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        category: {
+            type: DataTypes.STRING
+        },
+        nPictures: {
+            type: DataTypes.INTEGER
+        },
+        title: {
+            type: DataTypes.STRING
+        },
+        items: {
             type: DataTypes.STRING
         },
         unassignedImages: {
             type: DataTypes.STRING
+        },
+        favorite: {
+            type: DataTypes.BOOLEAN   
         },
     },
     {
