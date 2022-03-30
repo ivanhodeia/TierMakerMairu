@@ -1,9 +1,11 @@
+import { SnackbarAction } from './../../core/enums/snackbar-action.enum';
 import { TierListApiService } from './../../core/services/tier-list-api.service';
 import { SearchService } from './../../core/services/search.service';
 import { Component } from '@angular/core';
 import { TierList } from 'src/app/core';
 import { tap } from 'rxjs/operators';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'div[tier-list-grid]',
@@ -24,8 +26,7 @@ export class TierListGridPage {
       .pipe(tap({next: () => {
         this.fetchData();
         this.searchService.resetSearchQuery();
-      }}))
-      .subscribe();
+      }})).subscribe();
   }
 
   onToggleFavoriteValueButtonClicked(tierList: TierList) {

@@ -31,7 +31,7 @@ export class AuthService {
   private getUserProfile(token): void {
     this.apiService.get(PROFILE_URL)
       .subscribe({
-        next: data => this.onAuthSuccess(token, data),
+        next: data => this.onAuthSuccess(token, data as User),
         error: error => this.onAuthError(error)
       });
   }

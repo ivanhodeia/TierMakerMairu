@@ -13,11 +13,11 @@ export class TierListCardComponent {
   @Output() toggleFavoriteValueButtonClick: EventEmitter<any> = new EventEmitter();
 
   onRemoveButtonClicked() {
-    this.editButtonClick.emit();
+    this.removeButtonClick.emit();
   }
 
   onEditButtonClicked() {
-    this.removeButtonClick.emit();
+    this.editButtonClick.emit();
   }
 
   onToggleFavoriteValueButtonClicked() {

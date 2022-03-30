@@ -1,10 +1,12 @@
+import { ApiService } from './core/services/api.service';
+import { SnackbarService } from './core/services/snackbar.service';
 import { TierListApiService } from './core/services/tier-list-api.service';
 import { AuthService } from './core/services/auth.service';
 import { SearchService } from './core/services/search.service';
 import { ROUTE } from './core/consts/route.const';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { TierList } from './core';
+import { SnackbarAction, TierList } from './core';
 
 @Component({
   selector: 'app-root',
@@ -45,13 +47,19 @@ export class AppComponent {
     private router: Router,
     private tierListApiService: TierListApiService,
     private searchService: SearchService,
+    private snackbarService: SnackbarService,
     private authService: AuthService
   ) {
     this.searchService.needsReset().subscribe(value => this.resetSearchQuery = value);
     this.fetchData();
+    this.runNotifications();
   }
 
   private fetchData() {
     this.tierListApiService.getAll().subscribe(data => this.tierListItems = data);
+  }
+
+  private runNotifications() {
+    this.snackbarService.new.subscribe((value) => value ? this.snackbarService.open() : '');
   }
 }
