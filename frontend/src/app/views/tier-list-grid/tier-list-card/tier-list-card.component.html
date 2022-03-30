@@ -1,0 +1,20 @@
+<mat-card *ngIf="tierList">
+  <img mat-card-image [src]="tierList.banner" *ngIf="tierList.banner" alt="Imagen de la card">
+  <mat-card-content>
+    <mat-card-title>
+      {{ tierList.title }}
+      <button mat-icon-button color="warn" aria-label="Favorito" (click)="onToggleFavoriteValueButtonClicked()">
+        <mat-icon *ngIf="tierList.favorite">star</mat-icon>
+        <mat-icon *ngIf="!tierList.favorite">star_border</mat-icon>
+      </button>
+    </mat-card-title>
+    <mat-card-subtitle>
+      Categoría <em>{{ tierList.category }}</em> | {{ tierList.nPictures }} imágenes | {{ tierList.items.length }} filas
+    </mat-card-subtitle>
+    <p class="description">{{ tierList.description }}</p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button (click)="onEditButtonClicked()" color="primary" mat-button>Editar</button>
+    <button (click)="onRemoveButtonClicked()" mat-button>Borrar</button>
+  </mat-card-actions>
+</mat-card>

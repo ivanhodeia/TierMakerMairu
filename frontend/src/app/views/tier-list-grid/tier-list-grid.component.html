@@ -1,0 +1,16 @@
+<div class="container-wrapper">
+  <mat-tab-group (focusChange)="onTabClicked($event)">
+    <mat-tab [label]="label" *ngFor="let label of ['TODAS', 'FAVORITAS']">
+      <div class="container">
+        <div
+          *ngFor="let item of filteredTierListItems"
+          [tierList]="item"
+          (editButtonClick)="onEditCardButtonClicked(item)"
+          (removeButtonClick)="onRemoveCardButtonClicked(item)"
+          (toggleFavoriteValueButtonClick)="onToggleFavoriteValueButtonClicked(item)"
+          tier-list-card
+        ></div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

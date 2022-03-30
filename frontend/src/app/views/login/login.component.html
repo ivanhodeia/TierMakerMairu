@@ -1,0 +1,65 @@
+<div class="container">
+  <mat-card class="card card-picture">
+    <mat-card-header>
+      <mat-card-title>¡Bienvenid@, coder!</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="assets/login-picture.jpg" alt="Fotografía de inicio">
+  </mat-card>
+
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-subtitle>
+        Para loguearte introduce <em>admin@tiermaker.com</em> como nombre de usuario
+        y <em>password</em> como contraseña.
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline" [class.extra-pb]="alias.touched && alias.invalid" [class.mat-form-field-invalid]="(alias.touched && alias.invalid) || displayValidations">
+        <mat-label>Email</mat-label>
+        <input matInput [formControl]="alias" type="text" [required]="true">
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="alias.touched && alias.invalid">{{ getEmailErrorMessage() }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field
+        appearance="outline"
+        [class.extra-pb]="(password.touched && password.invalid) || displayValidations"
+        [class.mat-form-field-invalid]="(password.touched && password.invalid) || displayValidations"
+      >
+        <mat-label>Contraseña</mat-label>
+        <input matInput [formControl]="password" [type]="hidePassword ? 'password' : 'text'" [required]="true">
+
+        <div class="button-group" matSuffix>
+          <button
+            mat-icon-button
+            (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Ocultar contraseña'"
+            [attr.aria-pressed]="hidePassword"
+          >
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </div>
+        <mat-error *ngIf="(password.touched && password.invalid)">
+          {{ getPasswordErrorMessage() }}
+        </mat-error>
+        <mat-hint *ngIf="displayValidations" class="alert-danger">
+          {{ 'El usuario o la contraseña no son válidos' }}
+        </mat-hint>
+      </mat-form-field>
+
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button
+        mat-raised-button
+        color="primary"
+        (keyup.enter)="onSubmitButtonClicked()"
+        (click)="onSubmitButtonClicked()"
+        [disabled]="alias.invalid || password.invalid"
+      >
+        Siguiente
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div class="background"></div>

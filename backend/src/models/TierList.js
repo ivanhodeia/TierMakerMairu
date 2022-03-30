@@ -16,6 +16,12 @@ TierList.init({
         description: {
             type: DataTypes.STRING
         },
+        tiers: {
+            type: DataTypes.STRING
+        },
+        unassignedImages: {
+            type: DataTypes.STRING
+        },
     },
     {
     sequelize,

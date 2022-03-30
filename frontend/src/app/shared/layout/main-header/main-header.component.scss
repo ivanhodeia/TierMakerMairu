@@ -1,0 +1,31 @@
+:host {
+  display: flex;
+  align-items: center;
+  background: #3f51b5;
+  padding-left: 20px;
+}
+
+h1 {
+  font-weight: 300;
+  margin: 0;
+  padding: 24px 8px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.input-search {
+  background-color: unset;
+  padding: 0;
+  color: white;
+  border-color: white;
+  margin-right: 20px;
+
+  ::ng-deep * {
+    color: white;
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline,
+  ::ng-deep .mat-form-field-outline {
+    color: rgba(255, 255, 255, 0.12);
+  }
+}

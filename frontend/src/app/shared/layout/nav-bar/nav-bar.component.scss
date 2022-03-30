@@ -1,0 +1,20 @@
+.angular-logo {
+  height: 24px;
+  margin: 0 4px 3px 0;
+}
+
+.title {
+  font-size: 14px;
+}
+
+mat-toolbar {
+  height: 56px !important;
+}
+
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}

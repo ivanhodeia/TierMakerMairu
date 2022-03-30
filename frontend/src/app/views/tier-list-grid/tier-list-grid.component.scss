@@ -1,0 +1,15 @@
+.container-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  padding-top: 1rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  margin-top: 1rem;
+  gap: 2rem;
+  width: 100%;
+}

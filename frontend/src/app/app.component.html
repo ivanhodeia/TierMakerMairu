@@ -1,0 +1,35 @@
+<nav
+  tier-nav-bar
+  (logout)="onLogoutButtonClicked()"
+  *ngIf="!isLoginRoute()"
+></nav>
+
+<div class="container" [class.extra-margin-top]="!isLoginRoute()">
+  <main [class.full]="isLoginRoute()">
+    <header
+      [title]="getViewTitle()"
+      [hasSearch]="hasSearch()"
+      [reset]="resetSearchQuery"
+      (inputSubmit)="onSearchQueryUpdated($event)"
+      tier-main-header
+      *ngIf="!isLoginRoute()"
+    ></header>
+
+    <ng-template [ngIf]="!isLoginRoute()">
+      <mat-drawer-container class="example-container">
+        <mat-drawer mode="side" opened>
+          <div [tierListItems]="tierListItems" tier-sidebar></div>
+        </mat-drawer>
+        <mat-drawer-content>
+          <router-outlet></router-outlet>
+        </mat-drawer-content>
+      </mat-drawer-container>
+    </ng-template>
+
+    <ng-template [ngIf]="isLoginRoute()">
+      <router-outlet></router-outlet>
+    </ng-template>
+  </main>
+</div>
+
+

@@ -1,0 +1,14 @@
+<h1>{{ title }}</h1>
+<span class="spacer"></span>
+<div class="input-search" *ngIf="hasSearch">
+  <mat-form-field appearance="outline" color="accent">
+    <mat-label>Búsqueda</mat-label>
+    <input matInput [(ngModel)]="queryString" (ngModelChange)="onInputSubmitted()" type="text" [required]="false">
+    <div class="button-group" matSuffix>
+      <button *ngIf="queryString != ''" mat-icon-button aria-label="Clear" (click)="queryString = ''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-icon>search</mat-icon>
+    </div>
+  </mat-form-field>
+</div>

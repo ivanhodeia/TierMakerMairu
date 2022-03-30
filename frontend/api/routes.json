@@ -1,0 +1,8 @@
+{
+  "/api/*": "/$1",
+  "/auth/*": "/$1",
+  "/profile*": "/660/profile$1",
+  "/users*": "/660/users$1",
+  "/pictures*": "/660/messages$1",
+  "/tierlists*": "/660/tierlists$1"
+}

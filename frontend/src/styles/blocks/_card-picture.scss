@@ -1,0 +1,12 @@
+.card-picture {
+  padding: 0 !important;
+
+  img {
+    display: block;
+    border-radius: 4px;
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    margin: 0 !important;
+  }
+}

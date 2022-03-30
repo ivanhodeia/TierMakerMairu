@@ -1,0 +1,27 @@
+.container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  height: calc(100vh - 56px);
+}
+
+.full {
+  height: 100vh;
+}
+
+.extra-margin-top {
+  margin-top: 56px;
+}
+
+.mat-drawer {
+  width: 220px;
+}
