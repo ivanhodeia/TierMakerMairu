@@ -13,7 +13,11 @@ router.get('/profile', authenticateToken, (req, res) => {
     User.findAll({
         attributes: ['id', 'email'],
     }).then( (response) => {
-        res.status(status).send(response);
+        let user = response[0];
+        if(!user){
+            status = 400;
+        }
+        res.status(status).send(user);
     });
 });
 /** GET TOKEN */
