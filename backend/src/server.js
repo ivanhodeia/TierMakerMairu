@@ -1,15 +1,24 @@
 const express = require('express');
+var cors=require('cors');
 const sequelize = require('./database/database');
 
 sequelize.sync().then( () => {
     console.log('DB Ready');
 });
 
-
 const app = express();
 const PORT = 8080;
 
-var tierListsRouter = require('./routes/tierLists');
+const tierListsController = require('./routes/tierListController');
+const authController = require('./routes/authController');
+const picturesController = require('./routes/picturesController');
+
+app.use(cors(
+    {
+        origin:true,
+        credentials: true
+    }
+));
 
 app.listen(PORT, () => {
     console.log(`listening on port -> ${PORT}`);
@@ -18,7 +27,9 @@ app.listen(PORT, () => {
 app.use( express.json());
 
 
-app.use('/api/tierList', tierListsRouter);
+app.use('/api/tierlists', tierListsController);
+app.use('/api/auth', authController);
+app.use('/api/pictures', picturesController);
 
 app.use( (req, res) => {
     res.status(404);
