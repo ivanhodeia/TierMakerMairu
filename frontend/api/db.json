@@ -46,7 +46,7 @@
       "nPictures": 10,
       "banner": "https://picsum.photos/800/500?random=2",
       "description": "Descripción de la tier list 2.",
-      "favorite": true,
+      "favorite": false,
       "items": [
         {
           "id": "2.1",

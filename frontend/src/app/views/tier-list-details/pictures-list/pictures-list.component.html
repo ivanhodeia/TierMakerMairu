@@ -1,9 +1,16 @@
 <mat-card id="pictures">
   <mat-card-content>
-    <mat-list role="list">
-      <mat-list-item role="listitem" *ngFor="let picture of pictures">
-        <img [src]="picture">
-      </mat-list-item>
-    </mat-list>
+    <div
+      [id]="id"
+      class="grid"
+      [cdkDropListData]="pictures"
+      [cdkDropListConnectedTo]="allListIds"
+      (cdkDropListDropped)="onPictureDroppped($event)"
+      cdkDropListOrientation="vertical"
+      cdkDropListSortingDisabled
+      cdkDropList
+    >
+      <img [src]="picture" *ngFor="let picture of pictures" [cdkDragData]="picture" class="drag-box" cdkDrag>
+    </div>
   </mat-card-content>
 </mat-card>

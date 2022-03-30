@@ -3,6 +3,15 @@
   margin: 0 4px 3px 0;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
 .title {
   font-size: 14px;
 }

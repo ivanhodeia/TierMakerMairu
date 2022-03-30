@@ -1,12 +1,12 @@
-import { ApiService } from './core/services/api.service';
 import { SnackbarService } from './core/services/snackbar.service';
 import { TierListApiService } from './core/services/tier-list-api.service';
 import { AuthService } from './core/services/auth.service';
 import { SearchService } from './core/services/search.service';
 import { ROUTE } from './core/consts/route.const';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { SnackbarAction, TierList } from './core';
+import { Component, ViewChild } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { TierList } from './core';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +14,16 @@ import { SnackbarAction, TierList } from './core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @ViewChild('drawer') drawer: MatDrawer;
+
   tierListItems: Array<TierList> = [];
   resetSearchQuery: boolean = false;
 
   getViewTitle() {
     if (this.router.url == `/${ROUTE.TierListGrid}`) {
-      return 'Listado'
+      return 'Listado';
     }
-    return 'Detalle'
+    return 'Detalle';
   }
 
   hasSearch() {
@@ -44,9 +46,12 @@ export class AppComponent {
   }
 
   onSidebarElementSelected(event: any) {
-    console.log(event);
     let id = event.option.value.id;
     this.router.navigate([`./${ROUTE.TierListDetails}/${id}`]);
+  }
+
+  onLogoClicked() {
+    this.router.navigate([`./${ROUTE.TierListGrid}`]);
   }
 
   constructor(
@@ -59,6 +64,7 @@ export class AppComponent {
     this.searchService.needsReset().subscribe(value => this.resetSearchQuery = value);
     this.fetchData();
     this.runNotifications();
+    this.setSidebarToggler();
   }
 
   private fetchData() {
@@ -67,5 +73,16 @@ export class AppComponent {
 
   private runNotifications() {
     this.snackbarService.new.subscribe((value) => value ? this.snackbarService.open() : '');
+  }
+
+  private setSidebarToggler() {
+    this.router.events.subscribe((val) => {
+      console.log(val);
+      if (val instanceof NavigationEnd && this.drawer) {
+        (this.router.url == `/${ROUTE.TierListGrid}`)
+        ? this.drawer.open()
+        : this.drawer.close();
+      }
+    });
   }
 }

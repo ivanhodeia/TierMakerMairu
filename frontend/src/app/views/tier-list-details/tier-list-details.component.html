@@ -12,5 +12,16 @@ favorite -->
   </mat-card-header>
 </mat-card>
 
-<div [tierList]="tierList" tier-list-table></div>
-<div [pictures]="pictures" pictures-list></div>
+<div
+  [tierList]="tierList"
+  [allListIds]="getAllIds()"
+  (pictureDrop)="onPictureDroppped($event)"
+  tier-list-table
+></div>
+<div
+  [pictures]="pictures"
+  [allListIds]="getAllIds()"
+  [id]="getPicturesContainerId()"
+  (pictureDrop)="onPictureDroppped($event)"
+  pictures-list
+></div>

@@ -3,7 +3,9 @@ import { Category } from './../../core/enums/category.enum';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { createEmptyTierList, PicturesApiService, TierList, TierListApiService } from 'src/app/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
+const PICTURES_CONTAINER_ID = 'pictures-list';
 @Component({
   selector: 'div[tier-list-details]',
   templateUrl: './tier-list-details.component.html',
@@ -13,6 +15,27 @@ export class TierListDetailsPage {
   tierList: TierList = createEmptyTierList();
   pictures: Array<string> = [];
 
+  getAllIds() {
+    return [...this.tierList.items.map(elem => elem.id), PICTURES_CONTAINER_ID];
+  }
+
+  getPicturesContainerId() {
+    return PICTURES_CONTAINER_ID;
+  }
+
+  onPictureDroppped(event: CdkDragDrop<string[]>) {
+    console.log(event);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
 
   constructor(
     private route: ActivatedRoute,
