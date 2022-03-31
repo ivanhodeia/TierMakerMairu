@@ -1,5 +1,10 @@
 # EpicTierMaker
 
+## Introducción a JSON Server
+
+JSON Server es una librería que nos permite prototipar la interfaz de una API REST de forma rápida y sencilla,
+sin necesidad de configurar nada más (bases de datos, entornos...).
+
 ## Instalación de JSON Server
 
 Instalar [JSON Server](https://github.com/typicode/json-server).
@@ -149,6 +154,20 @@ Ejecutar el script.
 npm run back
 ```
 
+Probar rutas en el navegador.
+Por defecto se crean los métodos GET, POST, PUT, PATCH y DELETE para cada recurso.
+
+## Actualizar variables de entorno de desarrollo en el proyecto
+
+Añadir ruta de la fake API en `environment.ts`.
+
+```sh
+export const environment = {
+  production: false,
+  API_URL: 'http://127.0.0.1:3000/api'
+};
+```
+
 ## Configuración básica de JSON Server
 
 Mapear las rutas.
@@ -231,6 +250,16 @@ Mockear anidamiento de recursos anidados en `routes.json`.
 }
 ```
 
+## Operaciones avanzadas
+
+Probar paginación de imágenes en Postman.
+
+```sh
+GET /api/pictures/random?_start=0&_limit=10
+```
+
+También se puede filtrar por atributos o añadir middlewares para preprocesar las peticiones.
+
 ## Creación de un seeder
 
 Generar un script `seeder.json`.
@@ -239,3 +268,25 @@ Ejecutar el script.
 ```sh
 node ./api/seeder.js
 ```
+
+## Actualizar variables de entorno de producción en el proyecto
+
+Añadir ruta de la fake API en `environment.prod.ts`.
+
+```sh
+export const environment = {
+  production: true,
+  API_URL: 'http://127.0.0.1:8080/api'
+};
+```
+
+Probar proyecto con la API real.
+
+```sh
+ng serve --configuration production
+```
+
+## Conclusión
+
+Para desarrollar un proyecto de front de forma independiente no hace instalar bases de datos ni
+crear APIs. JSON Server te permite simular datos de escenarios reales con una configuración mínima.
