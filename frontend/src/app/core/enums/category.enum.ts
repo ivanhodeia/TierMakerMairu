@@ -1,4 +1,3 @@
 export enum Category {
-  Custom = 'custom',
-  Robots = 'robots'
+  Random = 'random'
 }

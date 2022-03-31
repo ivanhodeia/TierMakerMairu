@@ -1,6 +1,8 @@
 import { TierList, createEmptyTierList } from './../../../core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'div[tier-list-table]',
@@ -13,6 +15,8 @@ export class TierListTableComponent {
   @Output() pictureDrop: EventEmitter<any> = new EventEmitter();
   @Output() moveUp: EventEmitter<number> = new EventEmitter();
   @Output() moveDown: EventEmitter<number> = new EventEmitter();
+  @Output() edit: EventEmitter<number> = new EventEmitter();
+  @Output() remove: EventEmitter<number> = new EventEmitter();
 
   onPictureDroppped(event: CdkDragDrop<string[]>) {
     this.pictureDrop.emit(event);
@@ -24,5 +28,13 @@ export class TierListTableComponent {
 
   onMoveDownButtonClicked(i: number) {
     this.moveDown.emit(i);
+  }
+
+  onEditRowButtonClicked(i: number) {
+    this.edit.emit(i);
+  }
+
+  onRemoveRowButtonClicked(i: number) {
+    this.remove.emit(i);
   }
 }

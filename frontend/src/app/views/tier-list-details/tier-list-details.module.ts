@@ -1,3 +1,4 @@
+import { RowEditionDialogComponent } from './row-edition-dialog/row-edition-dialog.component';
 import { TierListDetailsPage } from './tier-list-details.component';
 import { MaterialModule } from './../../../material.module';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +10,7 @@ import { PicturesListComponent } from './pictures-list/pictures-list.component';
 
 @NgModule({
   declarations: [
+    RowEditionDialogComponent,
     PicturesListComponent,
     TierListTableComponent,
     TierListDetailsPage

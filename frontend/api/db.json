@@ -10,40 +10,54 @@
       "password": "$2a$12$.fFCLsXvLe2GvN85AWkSjOENFxxUAuYfk25KuyOnTl6yMccZYDwXW"
     }
   ],
-  "pictures": [
-    {
-      "id": "custom",
-      "category": "custom",
-      "pictures": [
-        "https://robohash.org/1d",
-        "https://robohash.org/1d1",
-        "https://robohash.org/1d3",
-        "https://robohash.org/1d4",
-        "https://robohash.org/1d5",
-        "https://robohash.org/1d6",
-        "https://robohash.org/1d7",
-        "https://robohash.org/1d8",
-        "https://robohash.org/1d9",
-        "https://robohash.org/1d10",
-        "https://robohash.org/2d",
-        "https://robohash.org/2d1",
-        "https://robohash.org/2d3",
-        "https://robohash.org/2d4",
-        "https://robohash.org/2d5",
-        "https://robohash.org/2d6",
-        "https://robohash.org/2d7",
-        "https://robohash.org/2d8",
-        "https://robohash.org/2d9",
-        "https://robohash.org/2d10"
-      ]
-    }
+  "random": [
+    "https://robohash.org/1d",
+    "https://robohash.org/1d1",
+    "https://robohash.org/1d3",
+    "https://robohash.org/1d4",
+    "https://robohash.org/1d5",
+    "https://robohash.org/1d6",
+    "https://robohash.org/1d7",
+    "https://robohash.org/1d8",
+    "https://robohash.org/1d9",
+    "https://robohash.org/1d10",
+    "https://robohash.org/2d",
+    "https://robohash.org/2d1",
+    "https://robohash.org/2d3",
+    "https://robohash.org/2d4",
+    "https://robohash.org/2d5",
+    "https://robohash.org/2d6",
+    "https://robohash.org/2d7",
+    "https://robohash.org/2d8",
+    "https://robohash.org/2d9",
+    "https://robohash.org/2d10",
+    "https://robohash.org/3d",
+    "https://robohash.org/3d3",
+    "https://robohash.org/3d3",
+    "https://robohash.org/3d4",
+    "https://robohash.org/3d5",
+    "https://robohash.org/3d6",
+    "https://robohash.org/3d7",
+    "https://robohash.org/3d8",
+    "https://robohash.org/3d9",
+    "https://robohash.org/3d10",
+    "https://robohash.org/4d",
+    "https://robohash.org/4d1",
+    "https://robohash.org/4d3",
+    "https://robohash.org/4d4",
+    "https://robohash.org/4d5",
+    "https://robohash.org/4d6",
+    "https://robohash.org/4d7",
+    "https://robohash.org/4d8",
+    "https://robohash.org/4d9",
+    "https://robohash.org/4d10"
   ],
   "tierlists": [
     {
       "id": "2",
       "title": "Título 2",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=2",
       "description": "Descripción de la tier list 2.",
       "favorite": false,
@@ -52,7 +66,7 @@
           "id": "2.1",
           "color": "#ff5733",
           "text": "first",
-          "pictures": []
+          "pictures": ["https://robohash.org/33d10"]
         },
         {
           "id": "2.2",
@@ -70,15 +84,15 @@
           "id": "2.4",
           "color": "#819964",
           "text": "fourth",
-          "pictures": []
+          "pictures": ["https://robohash.org/33sdd10", "https://robohash.org/33d12"]
         }
       ]
     },
     {
       "id": "3",
       "title": "Título 3",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=3",
       "description": "Descripción de la tier list 3.",
       "favorite": false,
@@ -93,7 +107,7 @@
           "id": "3.2",
           "color": "#996d64",
           "text": "second",
-          "pictures": []
+          "pictures": ["https://robohash.org/33sdd10", "https://robohash.org/33d12"]
         },
         {
           "id": "3.3",
@@ -105,15 +119,15 @@
           "id": "3.4",
           "color": "#819964",
           "text": "fourth",
-          "pictures": []
+          "pictures": ["https://robohash.org/33ddsdd10", "https://robohash.org/3dd3d12"]
         }
       ]
     },
     {
       "id": "4",
       "title": "Título 4",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=4",
       "description": "Descripción de la tier list 4.",
       "favorite": false,
@@ -122,13 +136,13 @@
           "id": "4.1",
           "color": "#ff5733",
           "text": "first",
-          "pictures": []
+          "pictures": ["https://robohash.org/33sdsdd10", "https://robohash.org/33d1sd2"]
         },
         {
           "id": "4.2",
           "color": "#996d64",
           "text": "second",
-          "pictures": []
+          "pictures": ["https://robohash.org/33sfsddd10", "https://robohash.org/33sdfd12"]
         },
         {
           "id": "4.3",
@@ -147,8 +161,8 @@
     {
       "id": "5",
       "title": "Título 5",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=5",
       "description": "Descripción de la tier list 5.",
       "favorite": false,
@@ -157,13 +171,13 @@
           "id": "5.1",
           "color": "#ff5733",
           "text": "first",
-          "pictures": []
+          "pictures": ["https://robohash.org/33sdd10", "https://robohash.org/33d12"]
         },
         {
           "id": "5.2",
           "color": "#996d64",
           "text": "second",
-          "pictures": []
+          "pictures": ["https://robohash.org/3sd3d12"]
         },
         {
           "id": "5.3",
@@ -182,8 +196,8 @@
     {
       "id": "6",
       "title": "Título 6",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=6",
       "description": "Descripción de la tier list 6.",
       "favorite": false,
@@ -217,8 +231,8 @@
     {
       "id": "7",
       "title": "Título 7",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=7",
       "description": "Descripción de la tier list 7.",
       "favorite": false,
@@ -252,8 +266,8 @@
     {
       "id": "8",
       "title": "Título 8",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=8",
       "description": "Descripción de la tier list 8.",
       "favorite": false,
@@ -287,8 +301,8 @@
     {
       "id": "9",
       "title": "Título 9",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=9",
       "description": "Descripción de la tier list 9.",
       "favorite": false,
@@ -322,8 +336,8 @@
     {
       "id": "10",
       "title": "Título 10",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=10",
       "description": "Descripción de la tier list 10.",
       "favorite": false,
@@ -357,8 +371,8 @@
     {
       "id": "11",
       "title": "Título 11",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=11",
       "description": "Descripción de la tier list 11.",
       "favorite": true,
@@ -392,8 +406,8 @@
     {
       "id": "12",
       "title": "Título 12",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=12",
       "description": "Descripción de la tier list 12.",
       "favorite": true,
@@ -427,8 +441,8 @@
     {
       "id": "13",
       "title": "Título 13",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=13",
       "description": "Descripción de la tier list 13.",
       "favorite": true,
@@ -462,8 +476,8 @@
     {
       "id": "14",
       "title": "Título 14",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=14",
       "description": "Descripción de la tier list 14.",
       "favorite": true,
@@ -497,8 +511,8 @@
     {
       "id": "15",
       "title": "Título 15",
-      "category": "custom",
-      "nPictures": 10,
+      "category": "random",
+      "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=15",
       "description": "Descripción de la tier list 15.",
       "favorite": true,

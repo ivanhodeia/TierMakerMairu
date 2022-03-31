@@ -11,10 +11,15 @@
           </button>
         </div>
         <div class="config-cell">
-          <button mat-icon-button aria-label="Settings icon">
+          <button mat-icon-button aria-label="Settings icon" [matMenuTriggerFor]="menu" #menuTrigger>
             <mat-icon>settings</mat-icon>
           </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onEditRowButtonClicked(i)">Editar</button>
+            <button mat-menu-item (click)="onRemoveRowButtonClicked(i)">Eliminar</button>
+          </mat-menu>
         </div>
+
         <div [ngStyle]="{ 'background-color': item.color }" class="header-cell">
           <p>{{ item.text }}</p>
         </div>

@@ -6,19 +6,20 @@ export interface TierList {
   id: string;
   description: string;
   banner?: string;
-  category: Category;
-  nPictures: number;
   title: string;
   items: Array<TierItem>;
   favorite: boolean;
+  category?: Category;
+  nPictures?: number;
+  pictures?: Array<string>;
 }
 
 export function createEmptyTierList(n?): TierList {
   return {
     id: uuidv4(),
     description: '',
-    category: Category.Custom,
-    nPictures: 0,
+    category: Category.Random,
+    nPictures: 10,
     title: 'Tier List',
     items: createRandomTierItems(n? n : 4),
     favorite: false

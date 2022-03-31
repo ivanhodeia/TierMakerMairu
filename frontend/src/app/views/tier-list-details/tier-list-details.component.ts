@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { createEmptyTierItem, createEmptyTierList, PicturesApiService, TierList, TierListApiService } from 'src/app/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { RowEditionDialogComponent } from './row-edition-dialog/row-edition-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 const PICTURES_CONTAINER_ID = 'pictures-list';
 @Component({
@@ -59,7 +61,6 @@ export class TierListDetailsPage {
   }
 
   onMoveUpButtonClicked(index: number) {
-    console.log('up ', index);
     if (index - 1 != this.tierList.items.length - 1) {
       moveItemInArray(this.tierList.items, index, index - 1);
     }
@@ -71,7 +72,23 @@ export class TierListDetailsPage {
     }
   }
 
+  onRemoveButtonClicked(index: number) {
+    this.tierList.items = this.tierList.items.filter((_, currentIndex) => index != currentIndex);
+  }
+
+  onEditButtonClicked(index: number) {
+    const dialogRef = this.dialog.open(RowEditionDialogComponent, {
+      restoreFocus: false,
+      data: { color: this.tierList.items[index].color, label: this.tierList.items[index].text }
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      this.tierList.items[index].color = data.color;
+      this.tierList.items[index].text = data.label;
+    });
+  }
+
   constructor(
+    public dialog: MatDialog,
     private route: ActivatedRoute,
     private picturesApiService: PicturesApiService,
     private tierListApiService: TierListApiService
@@ -86,7 +103,13 @@ export class TierListDetailsPage {
     this.tierListApiService.getById(id)
     .subscribe(data => {
       this.tierList = data;
-      this.fetchPictures(this.tierList.category, this.tierList.nPictures);
+      if (this.tierList.category) {
+        let currentNPictures = this.tierList.items.reduce((prev, item) => prev + item.pictures.length, 0);
+        let pendingPictures = this.tierList.nPictures - currentNPictures;
+        this.fetchPictures(this.tierList.category, pendingPictures);
+      } else {
+        this.pictures = this.tierList.pictures;
+      }
     });
   }
 

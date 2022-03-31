@@ -10,8 +10,7 @@ import { ApiService } from './api.service';
 export class PicturesApiService {
 
   getPictures(category: Category, max?: number): Observable<string[]> {
-    return this.apiService.get(`/pictures?category=${category}&_limit=${max}`)
-      .pipe(map((elem: any) => elem[0].pictures));
+    return this.apiService.get(`/pictures/${category}?_start=0&_limit=${max}`);
   }
 
   constructor(private apiService: ApiService) { }
