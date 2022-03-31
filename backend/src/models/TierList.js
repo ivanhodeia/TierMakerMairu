@@ -29,7 +29,7 @@ TierList.init({
         items: {
             type: DataTypes.STRING
         },
-        unassignedImages: {
+        pictures: {
             type: DataTypes.STRING
         },
         favorite: {

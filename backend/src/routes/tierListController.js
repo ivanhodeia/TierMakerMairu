@@ -37,11 +37,15 @@ router.post('/save', authenticateToken, (req, res) => {
     let tierList = {
         ... req.body
     }
+    if(!tierList.pictures) {
+        tierList.pictures = [];
+    }
     TierList.findAll({
         where: {
             id: tierList.id,
         },
     }).then( (response) => {
+        console.log("TierList", tierList);
         if(response.length == 0){
             tierListToSave = formatTierList(tierList, true);
             saveTierList(res, tierListToSave);
@@ -127,11 +131,11 @@ router.delete('/:id', authenticateToken, (req, res) => {
 function formatTierList(tierList, isSave = false) {
     if(isSave){
         tierList.items = JSON.stringify(tierList.items);
-        tierList.unassignedImages = JSON.stringify(tierList.unassignedImages);
+        tierList.pictures = JSON.stringify(tierList.pictures);
     }
     else{
         tierList.items = JSON.parse(tierList.items);
-        tierList.unassignedImages = JSON.parse(tierList.unassignedImages);
+        tierList.pictures = JSON.parse(tierList.pictures);
     }
     return tierList;
 }

@@ -114,7 +114,7 @@ router.get('/:category', authenticateToken, (req, res) => {
             }
         }
     })
-    res.status(200).send([{pictures: pictures}]);
+    res.status(200).send(pictures);
 });
 
 module.exports = router;
