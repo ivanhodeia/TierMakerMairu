@@ -59,20 +59,13 @@ export class AppComponent {
 
   onAddNewTierListButtonClicked() {
     let newTierList = createEmptyTierList();
-    this.openTierListDialog('add', newTierList);
-  }
-
-  private openTierListDialog(action: 'add' | 'edit', tierList: TierList) {
     const dialogRef = this.dialog.open(TierListDialogComponent, {
       restoreFocus: false,
-      data: { tierList: tierList, action: action }
+      data: { tierList: newTierList, action: 'add' }
     });
     dialogRef.afterClosed().subscribe(data => {
-      console.log('data del modal', data);
       if (data) {
-        data.action == 'add'
-        ? this.tierListApiService.save(data.tierList).subscribe()
-        : this.tierListApiService.update(data.tierList).subscribe();
+        this.tierListApiService.save(data.tierList).subscribe()
       }
     });
   }

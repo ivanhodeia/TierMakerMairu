@@ -57,39 +57,34 @@
       "id": "2",
       "title": "Título 2",
       "category": "random",
-      "nPictures": 20,
+      "nPictures": 25,
       "banner": "https://picsum.photos/800/500?random=2",
-      "description": "Descripción de la tier list 2.",
+      "description": "Nueva descripción de la tier list nº 2.",
       "favorite": true,
       "items": [
         {
-          "id": "2.1",
-          "color": "#ff5733",
-          "text": "first",
-          "pictures": [
-            "https://robohash.org/33d10"
-          ]
-        },
-        {
-          "id": "2.2",
-          "color": "#996d64",
-          "text": "second",
+          "id": "d4da5668-b751-4de9-980c-444c1f87c99c",
+          "color": "#29C289",
+          "text": "Nuevo",
           "pictures": []
         },
         {
-          "id": "2.3",
-          "color": "#646699",
-          "text": "third",
+          "id": "6eb35323-2f0f-4382-84d4-b7efa12697d9",
+          "color": "#10D327",
+          "text": "Nuevo",
           "pictures": []
         },
         {
-          "id": "2.4",
-          "color": "#819964",
-          "text": "fourth",
-          "pictures": [
-            "https://robohash.org/33sdd10",
-            "https://robohash.org/33d12"
-          ]
+          "id": "5fe221dd-98b3-4e22-ba8e-660098565e23",
+          "color": "#10675E",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "257dc06b-5b47-4c5a-bae2-08ea7e1891f9",
+          "color": "#71F3D4",
+          "text": "Nuevo",
+          "pictures": []
         }
       ]
     },

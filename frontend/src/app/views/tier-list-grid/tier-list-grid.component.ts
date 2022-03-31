@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material/dialog';
 import { TierListApiService } from './../../core/services/tier-list-api.service';
 import { SearchService } from './../../core/services/search.service';
 import { Component } from '@angular/core';
@@ -5,6 +6,7 @@ import { ROUTE, TierList } from 'src/app/core';
 import { tap } from 'rxjs/operators';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
+import { TierListDialogComponent } from 'src/app/shared';
 
 @Component({
   selector: 'div[tier-list-grid]',
@@ -17,7 +19,15 @@ export class TierListGridPage {
   filteredTierListItems: Array<TierList> = [];
 
   onEditCardButtonClicked(tierList: TierList) {
-    console.log('Edit button clicked!');
+    const dialogRef = this.dialog.open(TierListDialogComponent, {
+      restoreFocus: false,
+      data: { tierList: JSON.parse(JSON.stringify(tierList)), action: 'edit' }
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.tierListApiService.update(data.tierList).subscribe()
+      }
+    });
   }
 
   onRemoveCardButtonClicked(tierList: TierList) {
@@ -51,6 +61,7 @@ export class TierListGridPage {
   private tierListItems: Array<TierList> = [];
 
   constructor(
+    public dialog: MatDialog,
     private searchService: SearchService,
     private tierListApiService: TierListApiService,
     private router: Router

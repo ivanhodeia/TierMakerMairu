@@ -18,7 +18,6 @@ import { Category, createRandomTierItems, TierList } from 'src/app/core';
 export class TierListDialogComponent {
   random: boolean = false;
   pictures: Array<string> = [];
-  nPictures: number = 0;
 
   onAddNewPictureButtonClicked(value: string) {
     this.pictures.push(value);
@@ -30,14 +29,14 @@ export class TierListDialogComponent {
 
   getOutputData() {
     this.data.tierList.title = this.firstFormGroup.get('title').value;
-    this.data.tierList.description = this.firstFormGroup.get('title').value;
+    this.data.tierList.description = this.firstFormGroup.get('description').value;
     this.data.tierList.banner = this.firstFormGroup.get('banner').value;
     this.data.tierList.items = createRandomTierItems(this.firstFormGroup.get('nrows').value);
     if (!this.random) {
       this.data.tierList.pictures = this.pictures;
     } else {
       this.data.tierList.category = Category.Random;
-      this.data.tierList.nPictures = this.nPictures;
+      this.data.tierList.nPictures = this.secondFormGroup.get('nPictures').value;
     }
     return this.data;
   }
@@ -46,6 +45,18 @@ export class TierListDialogComponent {
   secondFormGroup: FormGroup;
 
   ngOnInit() {
+    if (this.data.action == 'add') {
+      this.createFormGroupsForCreation()
+    } else{
+      this.createFormGroupsForEdition();
+      this.random = this.data.tierList.category == Category.Random;
+      if (!this.random) {
+        this.pictures = this.data.tierList.pictures;
+      }
+    }
+  }
+
+  private createFormGroupsForCreation() {
     this.firstFormGroup = this.formBuilder.group({
       banner: ['', Validators.required],
       title: ['', [Validators.required, Validators.maxLength(15)]],
@@ -55,6 +66,19 @@ export class TierListDialogComponent {
 
     this.secondFormGroup = this.formBuilder.group({
       nPictures: [0, this.conditionalRequirementValidator(this.random)]
+    });
+  }
+
+  private createFormGroupsForEdition() {
+    this.firstFormGroup = this.formBuilder.group({
+      banner: [this.data.tierList.banner, Validators.required],
+      title: [this.data.tierList.title, [Validators.required, Validators.maxLength(15)]],
+      description: [this.data.tierList.description, Validators.required],
+      nrows: [this.data.tierList.items.length, Validators.required],
+    });
+
+    this.secondFormGroup = this.formBuilder.group({
+      nPictures: [this.data.tierList.nPictures, this.conditionalRequirementValidator(this.random)]
     });
   }
 
