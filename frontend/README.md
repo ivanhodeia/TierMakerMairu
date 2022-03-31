@@ -1,5 +1,14 @@
 # EpicTierMaker
 
+## Introducción 
+### Problema:
+Necesitamos desarrollar un producto mínimo viable o una prueba de concepto de aplicación. O quizás tenemos que desarrollar el front de forma independiente mientras el back está todavía en fase de diseño.
+
+### Alternativas:
+Para replicar los datos podemos añadir manualmente datos de prueba en las diferentes vistas o servicios de la aplicación que se encargan de llamar a la API. Sin embargo, a largo plazo no es una buena idea, puesto que esos cambios habría que revertirlos en el momento de la integración. 
+
+### Solución:
+Una alternativa sencilla es JSON Server.
 ## Introducción a JSON Server
 
 JSON Server es una librería que nos permite prototipar la interfaz de una API REST de forma rápida y sencilla,
@@ -185,6 +194,20 @@ Actualizar script de npm en `package.json`.
 json-server --watch ./api/db.json -r ./api/routes.json
 ```
 
+## Testar JSON Server con Postman
+Ahora vamos a testear lo que hemos hecho con Postman
+
+### ¿Qué es Postman?
+Es una aplicación para probar y crear APIs. 
+En el trabajo normalmente la utilizamos para hacer pruebas en integraciones.
+
+### Peticiones y Colecciones
+Tan fácil como poner la URL y seleccionar el tipo de petición.
+Se pueden añadir parámetros a las peticiones, así como diferentes tipos de autenticación.
+
+Las colecciones sirven para poder agrupar las peticiones en un mismo entorno.
+Se pueden exportar  e importar colecciones enteras.
+
 ## Configuración de la autenticación por JWT de JSON Server
 
 Instalar [JSON Server Auth](https://www.npmjs.com/package/json-server-auth).
@@ -239,6 +262,68 @@ Más info en la [doc](https://www.npmjs.com/package/json-server-auth).
   "/tierlists*": "/660/tierlists$1"
 }
 ```
+## Volvemos a Postman
+
+Ahora vamos a añadir el token a las peticiones de Postman.
+
+Post a la ruta de Login
+```json
+{
+    "email": "admin@tiermaker.com",
+    "password": "password"
+}
+```
+La respuesta debería ser algo del estilo a:
+```json
+{
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHRpZXJtYWtlci5jb20iLCJpYXQiOjE2NDg3MjE0MjEsImV4cCI6MTY0ODcyNTAyMSwic3ViIjoiYWRtaW4ifQ.9mgSOHC5tLiurSkoS_hEKgghv12h8Xjj5HYEgH37gaI",
+    "user": {
+        "id": "admin",
+        "email": "admin@tiermaker.com"
+    }
+}
+```
+## Tests en Postman
+Pestaña Tests
+
+Ejemplo de Get All:
+```js
+pm.test("Status test", () => {
+    pm.expect(pm.response.code).to.be.oneOf([200, 401]);
+});
+
+pm.test("Comprobación Tipos respuesta.", () => {
+    if(pm.response.code !== 401){
+        let responseJson = pm.response.json();
+        let jsonData = responseJson;
+        jsonData.forEach( (element) => {
+            pm.expect(element.id).to.be.a('string');
+            pm.expect(element.description).to.be.a('string');
+            if(element.banner){
+                pm.expect(element.banner).to.be.a('string');
+            }
+            pm.expect(element.category).to.be.a('string');
+            pm.expect(element.nPictures).to.be.a('number');
+            pm.expect(element.title).to.be.a('string');
+            pm.expect(element.items).to.be.a('array');
+            if(element.items.length > 0){
+                let tierToTest = element.items[0];
+                pm.expect(tierToTest.id).to.be.a('string');
+                pm.expect(tierToTest.color).to.be.a('string');
+                pm.expect(tierToTest.text).to.be.a('string');
+                pm.expect(tierToTest.pictures).to.be.a('array');
+            }
+            pm.expect(element.unassignedImages).to.be.a('array');
+            pm.expect(element.favorite).to.be.a('boolean');
+        });
+    }
+});
+```
+
+### Hay snippets al lado derecho que pueden ser de utilidad.
+
+## Probando el front otra vez
+Ahora que tenemos nuevamente autenticación podemos probar el front.
 
 ## Simulación de recursos anidados en JSON Server
 
