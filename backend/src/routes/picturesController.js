@@ -85,17 +85,26 @@ const PICTURES = [
 ];
 
 router.get('/', authenticateToken, (req, res) => {
-    let { category, _limit } = req.query;
+    let { category, _limit, _start } = req.query;
     if(category == 'undefined'){
         category = undefined;
     }
     if(_limit == 'undefined'){
         _limit = undefined;
     }
+    if(_start == 'undefined'){
+        _start = undefined;
+    }
     console.log("Params-> ", req.query);
     let pictures = [];
     if(!_limit){
         _limit = -1;
+    }
+    if(!_start){
+        _start = 0;
+    }
+    if(_limit > _start){
+        _limit -= _start;
     }
     PICTURES.forEach( (pictureInfo) => {
         if(!category || pictureInfo.category == category){
