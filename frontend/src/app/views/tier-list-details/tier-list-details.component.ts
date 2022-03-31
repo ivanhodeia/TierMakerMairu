@@ -6,6 +6,7 @@ import { createEmptyTierItem, createEmptyTierList, PicturesApiService, TierList,
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { RowEditionDialogComponent } from './row-edition-dialog/row-edition-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TierListDialogComponent } from 'src/app/shared';
 
 const PICTURES_CONTAINER_ID = 'pictures-list';
 @Component({
@@ -92,6 +93,18 @@ export class TierListDetailsPage {
 
   onSaveChangesButtonClicked() {
     this.tierListApiService.update(this.tierList).subscribe();
+  }
+
+  onEditFullTierListButtonClicked() {
+    const dialogRef = this.dialog.open(TierListDialogComponent, {
+      restoreFocus: false,
+      data: { tierList: JSON.parse(JSON.stringify(this.tierList)), action: 'edit' }
+    });
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+        this.tierListApiService.update(data.tierList).subscribe()
+      }
+    });
   }
 
   constructor(

@@ -52,6 +52,6 @@ mat-card {
   box-shadow: unset !important;
 }
 
-button:last-child {
+button:nth-last-child(2) {
   margin-left: 1rem;
 }
