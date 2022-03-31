@@ -1,0 +1,61 @@
+.actions {
+  display: flex;
+  justify-content: end;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  > *:not(.row) {
+    width: calc(100% + 1rem);
+  }
+}
+
+.row {
+  box-sizing: content-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+mat-list-item {
+  width: 100%;
+}
+
+.item-line {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+mat-icon:hover {
+  cursor: pointer;
+}
+
+.pictures-container {
+  border-radius: 4px;
+}
+
+.full {
+  border: 1px solid #dadada;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f9f9f9;
+}
+
+.toggle,
+.done,
+.random-form {
+  margin-top: 1rem;
+}
+
+.random-form {
+  width: 100%;
+}

@@ -1,0 +1,97 @@
+<p mat-dialog-title>{{ data.action == 'add' ? 'Añadir' : 'Editar'}} tier list</p>
+<mat-dialog-content>
+  <mat-vertical-stepper [linear]="data.action == 'add'" #stepper>
+
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Rellena la información básica</ng-template>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Banner</mat-label>
+          <input matInput placeholder="https://" formControlName="banner" required>
+        </mat-form-field>
+
+        <div class="row">
+          <mat-form-field hintLabel="Máximo 10 caracteres" appearance="outline">
+            <mat-label>Título</mat-label>
+            <input matInput placeholder="Título" maxlength="15" formControlName="title" required #input>
+            <mat-hint align="end">{{ input.value?.length || 0 }}/15</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Número de filas</mat-label>
+            <input matInput placeholder="Número de filas" formControlName="nrows" type="number" required>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput placeholder="Descripción" formControlName="description" required></textarea>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-button matStepperNext>Continuar</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="random ? secondFormGroup : null" label="Introduce las imágenes">
+      <mat-slide-toggle class="toggle" [checked]="random" (toggleChange)="random = !random">
+        Generar aleatoriamente
+      </mat-slide-toggle>
+
+      <ng-template [ngIf]="!random">
+        <mat-list role="list" class="pictures-container" [class.full]="pictures.length > 0">
+          <div mat-subheader *ngIf="pictures.length > 0">Imágenes</div>
+          <ng-container *ngFor="let picture of pictures; let i = index">
+            <mat-list-item role="listitem">
+              <mat-icon mat-list-icon>image</mat-icon>
+              <div class="item-line" matLine>
+                <div>{{ picture }}</div>
+                <mat-icon mat-list-icon matSuffix (click)="onRemovePictureButtonClicked(i)">close</mat-icon>
+              </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </ng-container>
+        </mat-list>
+
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Nueva imagen</mat-label>
+            <input matInput placeholder="https://" #pictureInput>
+          </mat-form-field>
+          <button (click)="onAddNewPictureButtonClicked(this.pictureInput.value); this.pictureInput.value = ''" mat-button>Añadir</button>
+        </div>
+      </ng-template>
+
+      <ng-template [ngIf]="random">
+        <form [formGroup]="secondFormGroup" class="random-form">
+          <mat-form-field appearance="outline">
+            <mat-label>Número de imágenes</mat-label>
+            <input matInput placeholder="Número de imágenes" formControlName="nPictures" type="number" required>
+          </mat-form-field>
+        </form>
+      </ng-template>
+
+      <div class="actions">
+        <button mat-button matStepperPrevious>Volver</button>
+        <button mat-button matStepperNext>Continuar</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Hecho</ng-template>
+      <p class="done">¡Perfecto! Confirma los cambios para crear esta nueva tier list.</p>
+      <div class="actions">
+        <button mat-button matStepperPrevious>Volver</button>
+        <button mat-button [mat-dialog-close]="getOutputData()">Guardar</button>
+      </div>
+    </mat-step>
+
+  </mat-vertical-stepper>
+</mat-dialog-content>
+<!-- <mat-dialog-actions *ngIf="">
+  <button mat-button color="primary" [disabled]="isInvalid()" [mat-dialog-close]="data">Confirmar</button>
+  <button mat-button >Cancelar</button>
+</mat-dialog-actions> -->
+

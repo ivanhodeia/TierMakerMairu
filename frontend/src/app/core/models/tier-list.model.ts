@@ -3,7 +3,7 @@ import { Category } from '../enums';
 import { TierItem, createEmptyTierItem } from './tier-item.model';
 
 export interface TierList {
-  id: string;
+  id?: string;
   description: string;
   banner?: string;
   title: string;
@@ -26,6 +26,6 @@ export function createEmptyTierList(n?): TierList {
   }
 }
 
-function createRandomTierItems(n: number) {
+export function createRandomTierItems(n: number) {
   return new Array(n).fill(0).map(_ => createEmptyTierItem());
 }

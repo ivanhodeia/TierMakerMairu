@@ -1,5 +1,9 @@
 img {
   max-height: 100px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .description-container {
@@ -46,4 +50,8 @@ img {
 mat-card {
   border: 0;
   box-shadow: unset !important;
+}
+
+button:last-child {
+  margin-left: 1rem;
 }

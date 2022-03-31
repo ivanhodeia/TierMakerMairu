@@ -14,6 +14,7 @@ const PICTURES_CONTAINER_ID = 'pictures-list';
   styleUrls: ['./tier-list-details.component.scss']
 })
 export class TierListDetailsPage {
+  editDescription: boolean = false;
   tierList: TierList = createEmptyTierList();
   pictures: Array<string> = [];
 
@@ -82,9 +83,15 @@ export class TierListDetailsPage {
       data: { color: this.tierList.items[index].color, label: this.tierList.items[index].text }
     });
     dialogRef.afterClosed().subscribe(data => {
-      this.tierList.items[index].color = data.color;
-      this.tierList.items[index].text = data.label;
+      if (data) {
+        this.tierList.items[index].color = data.color;
+        this.tierList.items[index].text = data.label;
+      }
     });
+  }
+
+  onSaveChangesButtonClicked() {
+    this.tierListApiService.update(this.tierList).subscribe();
   }
 
   constructor(
@@ -115,6 +122,6 @@ export class TierListDetailsPage {
 
   private fetchPictures(category: Category, n: number) {
     this.picturesApiService.getPictures(category, n)
-      .subscribe(data => {this.pictures = data; console.log(data)});
+      .subscribe(data => this.pictures = data);
   }
 }

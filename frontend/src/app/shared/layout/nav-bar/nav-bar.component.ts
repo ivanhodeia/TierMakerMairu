@@ -10,9 +10,10 @@ import { Router } from '@angular/router';
 export class NavBarComponent {
   @Output() logout: EventEmitter<any> = new EventEmitter();
   @Output() logoClick: EventEmitter<any> = new EventEmitter();
+  @Output() addNewTierList: EventEmitter<any> = new EventEmitter();
 
   onAddNewTierListButtonClicked() {
-    console.log('Add new tier list!');
+    this.addNewTierList.emit();
   }
 
   onLogoutButtonClicked() {

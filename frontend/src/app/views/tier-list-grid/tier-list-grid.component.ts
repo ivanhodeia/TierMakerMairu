@@ -30,7 +30,7 @@ export class TierListGridPage {
 
   onToggleFavoriteValueButtonClicked(tierList: TierList) {
     tierList.favorite = !tierList.favorite;
-    this.tierListApiService.saveOrUpdate(tierList)
+    this.tierListApiService.update(tierList)
       .pipe(tap({
         error: () => tierList.favorite = !tierList.favorite,
         next: () => this.fetchData()

@@ -60,13 +60,15 @@
       "nPictures": 20,
       "banner": "https://picsum.photos/800/500?random=2",
       "description": "Descripción de la tier list 2.",
-      "favorite": false,
+      "favorite": true,
       "items": [
         {
           "id": "2.1",
           "color": "#ff5733",
           "text": "first",
-          "pictures": ["https://robohash.org/33d10"]
+          "pictures": [
+            "https://robohash.org/33d10"
+          ]
         },
         {
           "id": "2.2",
@@ -84,7 +86,10 @@
           "id": "2.4",
           "color": "#819964",
           "text": "fourth",
-          "pictures": ["https://robohash.org/33sdd10", "https://robohash.org/33d12"]
+          "pictures": [
+            "https://robohash.org/33sdd10",
+            "https://robohash.org/33d12"
+          ]
         }
       ]
     },
@@ -107,7 +112,10 @@
           "id": "3.2",
           "color": "#996d64",
           "text": "second",
-          "pictures": ["https://robohash.org/33sdd10", "https://robohash.org/33d12"]
+          "pictures": [
+            "https://robohash.org/33sdd10",
+            "https://robohash.org/33d12"
+          ]
         },
         {
           "id": "3.3",
@@ -119,7 +127,10 @@
           "id": "3.4",
           "color": "#819964",
           "text": "fourth",
-          "pictures": ["https://robohash.org/33ddsdd10", "https://robohash.org/3dd3d12"]
+          "pictures": [
+            "https://robohash.org/33ddsdd10",
+            "https://robohash.org/3dd3d12"
+          ]
         }
       ]
     },
@@ -136,13 +147,19 @@
           "id": "4.1",
           "color": "#ff5733",
           "text": "first",
-          "pictures": ["https://robohash.org/33sdsdd10", "https://robohash.org/33d1sd2"]
+          "pictures": [
+            "https://robohash.org/33sdsdd10",
+            "https://robohash.org/33d1sd2"
+          ]
         },
         {
           "id": "4.2",
           "color": "#996d64",
           "text": "second",
-          "pictures": ["https://robohash.org/33sfsddd10", "https://robohash.org/33sdfd12"]
+          "pictures": [
+            "https://robohash.org/33sfsddd10",
+            "https://robohash.org/33sdfd12"
+          ]
         },
         {
           "id": "4.3",
@@ -171,13 +188,18 @@
           "id": "5.1",
           "color": "#ff5733",
           "text": "first",
-          "pictures": ["https://robohash.org/33sdd10", "https://robohash.org/33d12"]
+          "pictures": [
+            "https://robohash.org/33sdd10",
+            "https://robohash.org/33d12"
+          ]
         },
         {
           "id": "5.2",
           "color": "#996d64",
           "text": "second",
-          "pictures": ["https://robohash.org/3sd3d12"]
+          "pictures": [
+            "https://robohash.org/3sd3d12"
+          ]
         },
         {
           "id": "5.3",
@@ -542,6 +564,36 @@
           "pictures": []
         }
       ]
+    },
+    {
+      "id": "7e27e624-9301-4234-95e2-5d44e7676e10",
+      "description": "sdf",
+      "category": "random",
+      "nPictures": 0,
+      "title": "sdf",
+      "items": [
+        {
+          "id": "52e96268-b34c-44f5-942b-a592cd2a2d00",
+          "color": "#ABA60C",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "969d35ff-7bfe-4b54-aae3-0e21e12ee9a1",
+          "color": "#DB7125",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "4d58bb24-1360-4168-adb8-9c5ec0499f53",
+          "color": "#1E7AD8",
+          "text": "Nuevo",
+          "pictures": []
+        }
+      ],
+      "favorite": false,
+      "banner": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      "pictures": []
     }
   ]
 }

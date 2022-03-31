@@ -38,7 +38,12 @@ export class TierListApiService {
     return this.apiService.get(`/tierlists/${id}`);
   }
 
-  saveOrUpdate(tierList: TierList): Observable<any> {
+  save(tierList: TierList): Observable<any> {
+    return this.apiService.post(`/tierlists/save`, tierList)
+      .pipe(tap({next: () => this.updateCachedAll()}));
+  }
+
+  update(tierList: TierList): Observable<any> {
     return this.apiService.put(`/tierlists/${tierList.id}`, tierList)
       .pipe(tap({next: () => this.updateCachedAll()}));
   }

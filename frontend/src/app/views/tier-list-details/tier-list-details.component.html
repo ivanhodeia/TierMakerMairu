@@ -1,12 +1,15 @@
 <mat-toolbar>
-  <span>{{ tierList.title }}</span>
+  <span>
+    {{ tierList.title }}
+  </span>
+
   <span class="spacer"></span>
 
   <button mat-icon-button
-    aria-label="Clear icon" (click)="onClearAllButtonClicked()"
-    matTooltip="Vaciar todas las filas"
+    aria-label="Plus icon" (click)="onAddTierButtonClicked()"
+    matTooltip="Añadir nueva fila"
   >
-    <mat-icon>clear_all</mat-icon>
+    <mat-icon>add</mat-icon>
   </button>
   <button mat-icon-button
     aria-label="Fill icon" (click)="onFillTiersRandomlyButtonClicked()"
@@ -15,10 +18,19 @@
     <mat-icon>shuffle</mat-icon>
   </button>
   <button mat-icon-button
-    aria-label="Plus icon" (click)="onAddTierButtonClicked()"
-    matTooltip="Añadir nueva fila"
+    aria-label="Clear icon" (click)="onClearAllButtonClicked()"
+    matTooltip="Vaciar todas las filas"
   >
-    <mat-icon>add</mat-icon>
+    <mat-icon>clear_all</mat-icon>
+  </button>
+
+  <button
+    mat-flat-button
+    aria-label="Save button"
+    (click)="onSaveChangesButtonClicked()"
+    color="primary"
+  >
+    Guardar cambios
   </button>
 </mat-toolbar>
 
