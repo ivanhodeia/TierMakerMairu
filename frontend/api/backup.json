@@ -1,0 +1,634 @@
+{
+  "profile": {
+    "id": "admin",
+    "email": "admin@tiermaker.com"
+  },
+  "users": [
+    {
+      "id": "admin",
+      "email": "admin@tiermaker.com",
+      "password": "$2a$12$.fFCLsXvLe2GvN85AWkSjOENFxxUAuYfk25KuyOnTl6yMccZYDwXW"
+    }
+  ],
+  "random": [
+    "https://robohash.org/1d",
+    "https://robohash.org/1d1",
+    "https://robohash.org/1d3",
+    "https://robohash.org/1d4",
+    "https://robohash.org/1d5",
+    "https://robohash.org/1d6",
+    "https://robohash.org/1d7",
+    "https://robohash.org/1d8",
+    "https://robohash.org/1d9",
+    "https://robohash.org/1d10",
+    "https://robohash.org/2d",
+    "https://robohash.org/2d1",
+    "https://robohash.org/2d3",
+    "https://robohash.org/2d4",
+    "https://robohash.org/2d5",
+    "https://robohash.org/2d6",
+    "https://robohash.org/2d7",
+    "https://robohash.org/2d8",
+    "https://robohash.org/2d9",
+    "https://robohash.org/2d10",
+    "https://robohash.org/3d",
+    "https://robohash.org/3d3",
+    "https://robohash.org/3d3",
+    "https://robohash.org/3d4",
+    "https://robohash.org/3d5",
+    "https://robohash.org/3d6",
+    "https://robohash.org/3d7",
+    "https://robohash.org/3d8",
+    "https://robohash.org/3d9",
+    "https://robohash.org/3d10",
+    "https://robohash.org/4d",
+    "https://robohash.org/4d1",
+    "https://robohash.org/4d3",
+    "https://robohash.org/4d4",
+    "https://robohash.org/4d5",
+    "https://robohash.org/4d6",
+    "https://robohash.org/4d7",
+    "https://robohash.org/4d8",
+    "https://robohash.org/4d9",
+    "https://robohash.org/4d10"
+  ],
+  "tierlists": [
+    {
+      "id": "2",
+      "title": "Título 2",
+      "category": "random",
+      "nPictures": 25,
+      "banner": "https://picsum.photos/800/500?random=2",
+      "description": "Nueva descripción de la tier list nº 2.",
+      "favorite": false,
+      "items": [
+        {
+          "id": "d4da5668-b751-4de9-980c-444c1f87c99c",
+          "color": "#29C289",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "6eb35323-2f0f-4382-84d4-b7efa12697d9",
+          "color": "#10D327",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "5fe221dd-98b3-4e22-ba8e-660098565e23",
+          "color": "#10675E",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "257dc06b-5b47-4c5a-bae2-08ea7e1891f9",
+          "color": "#71F3D4",
+          "text": "Nuevo",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Título 3",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=3",
+      "description": "Descripción de la tier list 3.",
+      "favorite": true,
+      "items": [
+        {
+          "id": "3.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": []
+        },
+        {
+          "id": "3.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": [
+            "https://robohash.org/33sdd10",
+            "https://robohash.org/33d12"
+          ]
+        },
+        {
+          "id": "3.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "3.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": [
+            "https://robohash.org/33ddsdd10",
+            "https://robohash.org/3dd3d12"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Título 4",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=4",
+      "description": "Descripción de la tier list 4.",
+      "favorite": false,
+      "items": [
+        {
+          "id": "4.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": [
+            "https://robohash.org/33sdsdd10",
+            "https://robohash.org/33d1sd2"
+          ]
+        },
+        {
+          "id": "4.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": [
+            "https://robohash.org/33sfsddd10",
+            "https://robohash.org/33sdfd12"
+          ]
+        },
+        {
+          "id": "4.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "4.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Título 5",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=5",
+      "description": "Descripción de la tier list 5.",
+      "favorite": false,
+      "items": [
+        {
+          "id": "5.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": [
+            "https://robohash.org/33sdd10",
+            "https://robohash.org/33d12"
+          ]
+        },
+        {
+          "id": "5.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": [
+            "https://robohash.org/3sd3d12"
+          ]
+        },
+        {
+          "id": "5.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "5.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Título 6",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=6",
+      "description": "Descripción de la tier list 6.",
+      "favorite": false,
+      "items": [
+        {
+          "id": "6.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": []
+        },
+        {
+          "id": "6.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": []
+        },
+        {
+          "id": "6.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "6.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Título 7",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=7",
+      "description": "Descripción de la tier list 7.",
+      "favorite": false,
+      "items": [
+        {
+          "id": "7.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": []
+        },
+        {
+          "id": "7.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": []
+        },
+        {
+          "id": "7.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "7.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Título 8",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=8",
+      "description": "Descripción de la tier list 8.",
+      "favorite": false,
+      "items": [
+        {
+          "id": "8.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": []
+        },
+        {
+          "id": "8.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": []
+        },
+        {
+          "id": "8.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "8.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Título 9",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=9",
+      "description": "Descripción de la tier list 9.",
+      "favorite": false,
+      "items": [
+        {
+          "id": "9.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": []
+        },
+        {
+          "id": "9.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": []
+        },
+        {
+          "id": "9.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "9.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Título 10",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=10",
+      "description": "Descripción de la tier list 10.",
+      "favorite": false,
+      "items": [
+        {
+          "id": "10.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": []
+        },
+        {
+          "id": "10.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": []
+        },
+        {
+          "id": "10.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "10.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Título 11",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=11",
+      "description": "Descripción de la tier list 11.",
+      "favorite": true,
+      "items": [
+        {
+          "id": "11.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": []
+        },
+        {
+          "id": "11.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": []
+        },
+        {
+          "id": "11.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "11.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "Título 12",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=12",
+      "description": "Descripción de la tier list 12.",
+      "favorite": true,
+      "items": [
+        {
+          "id": "12.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": []
+        },
+        {
+          "id": "12.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": []
+        },
+        {
+          "id": "12.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "12.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "title": "Título 13",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=13",
+      "description": "Descripción de la tier list 13.",
+      "favorite": true,
+      "items": [
+        {
+          "id": "13.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": []
+        },
+        {
+          "id": "13.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": []
+        },
+        {
+          "id": "13.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "13.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "title": "Título 14",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=14",
+      "description": "Descripción de la tier list 14.",
+      "favorite": true,
+      "items": [
+        {
+          "id": "14.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": []
+        },
+        {
+          "id": "14.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": []
+        },
+        {
+          "id": "14.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "14.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "title": "Título 15",
+      "category": "random",
+      "nPictures": 20,
+      "banner": "https://picsum.photos/800/500?random=15",
+      "description": "Descripción de la tier list 15.",
+      "favorite": true,
+      "items": [
+        {
+          "id": "15.1",
+          "color": "#ff5733",
+          "text": "first",
+          "pictures": []
+        },
+        {
+          "id": "15.2",
+          "color": "#996d64",
+          "text": "second",
+          "pictures": []
+        },
+        {
+          "id": "15.3",
+          "color": "#646699",
+          "text": "third",
+          "pictures": []
+        },
+        {
+          "id": "15.4",
+          "color": "#819964",
+          "text": "fourth",
+          "pictures": []
+        }
+      ]
+    },
+    {
+      "id": "7e27e624-9301-4234-95e2-5d44e7676e10",
+      "description": "sdf",
+      "category": "random",
+      "nPictures": 0,
+      "title": "sdf",
+      "items": [
+        {
+          "id": "52e96268-b34c-44f5-942b-a592cd2a2d00",
+          "color": "#ABA60C",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "969d35ff-7bfe-4b54-aae3-0e21e12ee9a1",
+          "color": "#DB7125",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "4d58bb24-1360-4168-adb8-9c5ec0499f53",
+          "color": "#1E7AD8",
+          "text": "Nuevo",
+          "pictures": []
+        }
+      ],
+      "favorite": false,
+      "banner": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      "pictures": []
+    },
+    {
+      "id": "3b096514-a152-4382-a413-e753bee8973c",
+      "description": "TierList con imágenes introducidas manualmente.",
+      "title": "TierList Real",
+      "items": [
+        {
+          "id": "173fbb25-aa5d-47a7-b913-e03d34e6337e",
+          "color": "#33FD8B",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "58ac772d-5723-4b9b-b702-3d420b59ec95",
+          "color": "#3A858A",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "7e471dea-2511-4635-9b0b-b14497154312",
+          "color": "#BA2BC5",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "329af9e3-87e9-428e-a106-026a3a85d99e",
+          "color": "#EB6537",
+          "text": "Nuevo",
+          "pictures": []
+        }
+      ],
+      "favorite": false,
+      "banner": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      "pictures": [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1024px-Unofficial_JavaScript_logo_2.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/9/91/JavaScript_screenshot.png",
+        "https://codigoonclick.com/wp-content/uploads/2017/11/editores-codigo-javascript.jpg",
+        "https://codigoonclick.com/wp-content/uploads/2017/11/atom-opensource-editor-javascript.gif",
+        "https://codigoonclick.com/wp-content/uploads/2017/11/brackets-open-source-editor-javascript.gif"
+      ]
+    }
+  ]
+}
