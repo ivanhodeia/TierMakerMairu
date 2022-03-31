@@ -589,6 +589,46 @@
       "favorite": false,
       "banner": "https://material.angular.io/assets/img/examples/shiba2.jpg",
       "pictures": []
+    },
+    {
+      "id": "3b096514-a152-4382-a413-e753bee8973c",
+      "description": "TierList con imágenes introducidas manualmente.",
+      "title": "TierList Real",
+      "items": [
+        {
+          "id": "173fbb25-aa5d-47a7-b913-e03d34e6337e",
+          "color": "#33FD8B",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "58ac772d-5723-4b9b-b702-3d420b59ec95",
+          "color": "#3A858A",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "7e471dea-2511-4635-9b0b-b14497154312",
+          "color": "#BA2BC5",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "329af9e3-87e9-428e-a106-026a3a85d99e",
+          "color": "#EB6537",
+          "text": "Nuevo",
+          "pictures": []
+        }
+      ],
+      "favorite": false,
+      "banner": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      "pictures": [
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1024px-Unofficial_JavaScript_logo_2.svg.png",
+        "https://upload.wikimedia.org/wikipedia/commons/9/91/JavaScript_screenshot.png",
+        "https://codigoonclick.com/wp-content/uploads/2017/11/editores-codigo-javascript.jpg",
+        "https://codigoonclick.com/wp-content/uploads/2017/11/atom-opensource-editor-javascript.gif",
+        "https://codigoonclick.com/wp-content/uploads/2017/11/brackets-open-source-editor-javascript.gif"
+      ]
     }
   ]
 }

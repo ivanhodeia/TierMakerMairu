@@ -34,6 +34,8 @@ export class TierListDialogComponent {
     this.data.tierList.items = createRandomTierItems(this.firstFormGroup.get('nrows').value);
     if (!this.random) {
       this.data.tierList.pictures = this.pictures;
+      this.data.tierList.category = undefined;
+      this.data.tierList.nPictures = undefined;
     } else {
       this.data.tierList.category = Category.Random;
       this.data.tierList.nPictures = this.secondFormGroup.get('nPictures').value;
