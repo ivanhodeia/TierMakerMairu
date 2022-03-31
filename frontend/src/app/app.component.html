@@ -20,7 +20,7 @@
 
     <mat-drawer-container [class.full]="isLoginRoute()">
       <mat-drawer mode="side" opened *ngIf="!isLoginRoute()" #drawer>
-        <div [tierListItems]="tierListItems" (elementSelect)="onSidebarElementSelected($event)" tier-sidebar></div>
+        <div class="view" [tierListItems]="tierListItems" (elementSelect)="onSidebarElementSelected($event)" tier-sidebar></div>
       </mat-drawer>
       <mat-drawer-content>
         <router-outlet></router-outlet>
