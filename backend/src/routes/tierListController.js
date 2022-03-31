@@ -32,6 +32,26 @@ router.get('/:id', authenticateToken, (req, res) => {
         res.status(status).send(tierList);
     });
 });
+/** POST */
+router.post('/save', authenticateToken, (req, res) => {
+    let tierList = {
+        ... req.body
+    }
+    TierList.findAll({
+        where: {
+            id: tierList.id,
+        },
+    }).then( (response) => {
+        if(response.length == 0){
+            tierListToSave = formatTierList(tierList, true);
+            saveTierList(res, tierListToSave);
+        }
+        else{
+            tierListToUpdate = formatTierList(tierList, true);
+            updateTierList(res, tierList);
+        }
+    }); 
+});
 /** PUT */
 router.put('/:id', authenticateToken, (req, res) => {
     //Aquí hay que modificar para comprobar si ya existe y editar en vez de insertar en ese caso ^^
@@ -59,7 +79,7 @@ router.put('/:id', authenticateToken, (req, res) => {
             tierListToUpdate = formatTierList(tierList, true);
             updateTierList(res, tierList);
         }
-    });    
+    }); 
 });
 
 function saveTierList(res, newTierList) {
