@@ -1,5 +1,10 @@
 # EpicTierMaker
 
+## Introducción a JSON Server
+
+JSON Server es una librería que nos permite prototipar la interfaz de una API REST de forma rápida y sencilla,
+sin necesidad de configurar nada más (bases de datos, entornos...).
+
 ## Instalación de JSON Server
 
 Instalar [JSON Server](https://github.com/typicode/json-server).
@@ -148,6 +153,9 @@ Ejecutar el script.
 ```sh
 npm run back
 ```
+
+Probar rutas en el navegador.
+Por defecto se crean los métodos GET, POST, PUT, PATCH y DELETE para cada recurso.
 
 ## Configuración básica de JSON Server
 
