@@ -84,8 +84,9 @@ const PICTURES = [
     },
 ];
 
-router.get('/', authenticateToken, (req, res) => {
-    let { category, _limit, _start } = req.query;
+router.get('/:category', authenticateToken, (req, res) => {
+    let { category } = req.params;
+    let { _limit, _start } = req.query;
     if(category == 'undefined'){
         category = undefined;
     }
@@ -107,7 +108,7 @@ router.get('/', authenticateToken, (req, res) => {
         _limit -= _start;
     }
     PICTURES.forEach( (pictureInfo) => {
-        if(!category || pictureInfo.category == category){
+        if(!category || category == 'random' || pictureInfo.category == category){
             if(_limit == -1 || pictures.length < _limit){
                 pictures.push(pictureInfo.picture);
             }
