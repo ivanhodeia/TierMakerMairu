@@ -18,3 +18,26 @@
   height: 100%;
   min-height: calc(100vh - 56px - 80px);
 }
+
+.input-search {
+  background-color: unset;
+  padding: 0;
+  color: rgb(176 172 172 / 87%);
+  border-color: white;
+  margin-right: 20px;
+
+  ::ng-deep * {
+    color: rgb(176 172 172 / 87%);
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline,
+  ::ng-deep .mat-form-field-outline {
+    color: rgb(176 172 172 / 87%);
+  }
+}
+
+.tierlist-container{
+  ::ng-deep .mat-tab-header {
+    max-width: 75%;
+  }
+}

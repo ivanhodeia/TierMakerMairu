@@ -1,18 +1,10 @@
-<mat-toolbar color="primary" class="mat-elevation-z6">
+<mat-toolbar class="mat-elevation-z6, nav-bar">
   <div class="logo" (click)="onLogoClicked()">
     <img _ngcontent-opo-c36="" src="/assets/angular-logo.png" alt="angular" class="angular-logo">
     <span class="title">Epic tier maker!</span>
   </div>
   <span class="spacer"></span>
   <div class="button-group">
-    <button
-      (click)="onAddNewTierListButtonClicked()"
-      matTooltip="Añadir una nueva tier list"
-      mat-raised-button
-      color="accent"
-    >
-      Añadir
-    </button>
     <button
       (click)="onLogoutButtonClicked()"
       matTooltip="Cerrar sesión"

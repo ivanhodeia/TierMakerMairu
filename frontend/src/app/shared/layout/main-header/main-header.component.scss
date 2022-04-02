@@ -1,18 +1,21 @@
 :host {
   display: flex;
   align-items: center;
-  background: #3f51b5;
+  background: #ebeefa9a;
   padding-left: 20px;
 }
 
 h1 {
-  font-weight: 300;
+  font-weight: 500;
   margin: 0;
   padding: 24px 8px;
   font-size: 20px;
-  color: #fff;
+  color: rgb(224, 8, 8);
 }
 
+.create-button{
+  margin-right: 2rem;
+}
 mat-icon {
   color: #fff;
 

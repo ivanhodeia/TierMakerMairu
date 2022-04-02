@@ -10,11 +10,6 @@ import { Router } from '@angular/router';
 export class NavBarComponent {
   @Output() logout: EventEmitter<any> = new EventEmitter();
   @Output() logoClick: EventEmitter<any> = new EventEmitter();
-  @Output() addNewTierList: EventEmitter<any> = new EventEmitter();
-
-  onAddNewTierListButtonClicked() {
-    this.addNewTierList.emit();
-  }
 
   onLogoutButtonClicked() {
     this.logout.emit();
