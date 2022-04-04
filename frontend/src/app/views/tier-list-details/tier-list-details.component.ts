@@ -45,18 +45,6 @@ export class TierListDetailsPage {
     this.tierList.items.push(createEmptyTierItem());
   }
 
-  onMoveUpButtonClicked(index: number) {
-    if (index - 1 != this.tierList.items.length - 1) {
-      moveItemInArray(this.tierList.items, index, index - 1);
-    }
-  }
-
-  onMoveDownButtonClicked(index: number) {
-    if (index + 1 != 0) {
-      moveItemInArray(this.tierList.items, index, index + 1);
-    }
-  }
-
   onRemoveButtonClicked(index: number) {
     this.tierList.items = this.tierList.items.filter((_, currentIndex) => index != currentIndex);
   }

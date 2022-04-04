@@ -22,14 +22,6 @@ export class TierListTableComponent {
     this.pictureDrop.emit(event);
   }
 
-  onMoveUpButtonClicked(i: number) {
-    this.moveUp.emit(i);
-  }
-
-  onMoveDownButtonClicked(i: number) {
-    this.moveDown.emit(i);
-  }
-
   onEditRowButtonClicked(i: number) {
     this.edit.emit(i);
   }
