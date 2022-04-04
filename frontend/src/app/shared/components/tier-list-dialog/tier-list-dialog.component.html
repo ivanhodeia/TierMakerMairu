@@ -36,11 +36,11 @@
     </mat-step>
 
     <mat-step [stepControl]="random ? secondFormGroup : null" label="Introduce las imágenes">
-      <mat-slide-toggle class="toggle" [checked]="random" (toggleChange)="random = !random">
+      <!-- <mat-slide-toggle class="toggle" [checked]="random" (toggleChange)="random = !random">
         Generar aleatoriamente
-      </mat-slide-toggle>
+      </mat-slide-toggle> -->
 
-      <ng-template [ngIf]="!random">
+      <ng-template [ngIf]="random">
         <mat-list role="list" class="pictures-container" [class.full]="pictures.length > 0">
           <div mat-subheader *ngIf="pictures.length > 0">Imágenes</div>
           <ng-container *ngFor="let picture of pictures; let i = index">
@@ -64,7 +64,7 @@
         </div>
       </ng-template>
 
-      <ng-template [ngIf]="random">
+      <ng-template [ngIf]="!random">
         <form [formGroup]="secondFormGroup" class="random-form">
           <mat-form-field appearance="outline">
             <mat-label>Número de imágenes</mat-label>
