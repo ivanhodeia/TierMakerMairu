@@ -41,14 +41,6 @@ export class TierListDetailsPage {
     }
   }
 
-  onFillTiersRandomlyButtonClicked() {
-    this.pictures.forEach((url) => {
-      let tierIndex = Math.floor(Math.random() * (this.tierList.items.length - 0));
-      this.tierList.items[tierIndex].pictures.push(url);
-    });
-    this.pictures = [];
-  }
-
   onAddTierButtonClicked() {
     this.tierList.items.push(createEmptyTierItem());
   }
