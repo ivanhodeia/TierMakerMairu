@@ -1260,7 +1260,9 @@
           "id": "i.1",
           "color": "#ff5733",
           "text": "mejor",
-          "pictures": []
+          "pictures": [
+            "https://picsum.photos/800/500?random=2"
+          ]
         },
         {
           "id": "i.2",
