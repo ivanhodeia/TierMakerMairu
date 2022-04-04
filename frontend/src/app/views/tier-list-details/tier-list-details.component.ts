@@ -41,10 +41,6 @@ export class TierListDetailsPage {
     }
   }
 
-  onAddTierButtonClicked() {
-    this.tierList.items.push(createEmptyTierItem());
-  }
-
   onSaveChangesButtonClicked() {
     this.tierListApiService.update(this.tierList).subscribe();
   }
