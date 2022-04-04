@@ -4515,6 +4515,28 @@
       "favorite": false,
       "banner": "https://i.blogs.es/a19bfc/testing/450_1000.jpg",
       "pictures": []
+    },
+    {
+      "id": "5f818f5a-5238-4fe4-8b0a-b645c83228d3",
+      "description": "test",
+      "title": "test",
+      "items": [
+        {
+          "id": "17919d42-37f2-46de-ab8f-d8be29a3f66d",
+          "color": "#824C75",
+          "text": "Nuevo",
+          "pictures": []
+        },
+        {
+          "id": "311ca248-e25c-42ef-a91b-491526c876c6",
+          "color": "#D0BB53",
+          "text": "Nuevo",
+          "pictures": []
+        }
+      ],
+      "favorite": false,
+      "banner": "https://i.blogs.es/a19bfc/testing/450_1000.jpg",
+      "pictures": []
     }
   ]
 }

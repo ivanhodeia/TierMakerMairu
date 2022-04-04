@@ -15,7 +15,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: ROUTE.TierListDetails + '/:id',
+    path: ROUTE.TierListDetails,
     component: TierListDetailsPage,
     canActivate: [AuthGuard],
   },

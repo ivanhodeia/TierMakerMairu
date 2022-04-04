@@ -63,24 +63,6 @@ export class TierListDetailsPage {
     private picturesApiService: PicturesApiService,
     private tierListApiService: TierListApiService
   ) {
-    this.route.params.subscribe(params => {
-      let id = params['id'];
-      this.fetchTierList(id);
-    })
-  }
-
-  private fetchTierList(id: string) {
-    this.tierListApiService.getById(id)
-    .subscribe(data => {
-      this.tierList = data;
-      if (this.tierList.category) {
-        let currentNPictures = this.tierList.items.reduce((prev, item) => prev + item.pictures.length, 0);
-        let pendingPictures = this.tierList.nPictures - currentNPictures;
-        this.fetchPictures(this.tierList.category, pendingPictures);
-      } else {
-        this.pictures = this.tierList.pictures;
-      }
-    });
   }
 
   private fetchPictures(category: Category, n: number) {
