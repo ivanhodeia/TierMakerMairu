@@ -45,23 +45,6 @@ export class TierListDetailsPage {
     this.tierList.items.push(createEmptyTierItem());
   }
 
-  onRemoveButtonClicked(index: number) {
-    this.tierList.items = this.tierList.items.filter((_, currentIndex) => index != currentIndex);
-  }
-
-  onEditButtonClicked(index: number) {
-    const dialogRef = this.dialog.open(RowEditionDialogComponent, {
-      restoreFocus: false,
-      data: { color: this.tierList.items[index].color, label: this.tierList.items[index].text }
-    });
-    dialogRef.afterClosed().subscribe(data => {
-      if (data) {
-        this.tierList.items[index].color = data.color;
-        this.tierList.items[index].text = data.label;
-      }
-    });
-  }
-
   onSaveChangesButtonClicked() {
     this.tierListApiService.update(this.tierList).subscribe();
   }

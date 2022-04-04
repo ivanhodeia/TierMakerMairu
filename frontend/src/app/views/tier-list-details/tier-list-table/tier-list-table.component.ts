@@ -21,12 +21,4 @@ export class TierListTableComponent {
   onPictureDroppped(event: CdkDragDrop<string[]>) {
     this.pictureDrop.emit(event);
   }
-
-  onEditRowButtonClicked(i: number) {
-    this.edit.emit(i);
-  }
-
-  onRemoveRowButtonClicked(i: number) {
-    this.remove.emit(i);
-  }
 }
