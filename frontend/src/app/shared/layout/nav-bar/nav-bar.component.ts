@@ -8,12 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
-  @Output() logout: EventEmitter<any> = new EventEmitter();
   @Output() logoClick: EventEmitter<any> = new EventEmitter();
-
-  onLogoutButtonClicked() {
-    this.logout.emit();
-  }
 
   onLogoClicked() {
     this.logoClick.emit();

@@ -49,10 +49,6 @@ export class AppComponent {
     return this.router.url.includes('details');
   }
 
-  onLogoutButtonClicked() {
-    this.authService.logout();
-  }
-
   onSidebarElementSelected(event: any) {
     let id = event.option.value.id;
     this.router.navigate([`./${ROUTE.TierListDetails}/${id}`]);
