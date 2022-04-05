@@ -13,14 +13,13 @@
   </div>
   <div class="tierlist-container">
     <mat-tab-group (focusChange)="onTabClicked($event)">
-      <mat-tab class="labelssdd" [label]="label" *ngFor="let label of ['Mis Tierlist', 'TODAS', 'FAVORITAS']">
+      <mat-tab class="labelssdd" [label]="label" *ngFor="let label of ['Mis Tierlist', 'TODAS']">
         <div class="container">
           <div
             *ngFor="let item of filteredTierListItems"
             [tierList]="item"
             (editButtonClick)="onEditCardButtonClicked(item)"
             (removeButtonClick)="onRemoveCardButtonClicked(item)"
-            (toggleFavoriteValueButtonClick)="onToggleFavoriteValueButtonClicked(item)"
             (click)="onCardClicked(item)"
             tier-list-card
           ></div>

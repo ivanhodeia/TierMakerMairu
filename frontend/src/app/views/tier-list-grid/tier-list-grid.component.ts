@@ -39,16 +39,6 @@ export class TierListGridPage {
       }})).subscribe();
   }
 
-  onToggleFavoriteValueButtonClicked(tierList: TierList) {
-    tierList.favorite = !tierList.favorite;
-    this.tierListApiService.update(tierList)
-      .pipe(tap({
-        error: () => tierList.favorite = !tierList.favorite,
-        next: () => this.fetchData()
-      }))
-      .subscribe()
-  }
-
   onCardClicked(tierList: TierList) {
     this.router.navigate([`/${ROUTE.TierListDetails}/${tierList.id}`]);
   }

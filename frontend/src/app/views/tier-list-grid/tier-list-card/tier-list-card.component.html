@@ -3,9 +3,8 @@
   <mat-card-content>
     <mat-card-title (click)="$event.stopImmediatePropagation()">
       {{ tierList.title }}
-      <button mat-icon-button color="warn" aria-label="Favorito" (click)="onToggleFavoriteValueButtonClicked()">
-        <mat-icon *ngIf="tierList.favorite">star</mat-icon>
-        <mat-icon *ngIf="!tierList.favorite">star_border</mat-icon>
+      <button mat-icon-button color="warn" aria-label="Favorito">
+        <mat-icon>star_border</mat-icon>
       </button>
     </mat-card-title>
     <mat-card-subtitle>

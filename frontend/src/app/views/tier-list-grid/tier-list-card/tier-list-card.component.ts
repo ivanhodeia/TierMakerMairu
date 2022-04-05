@@ -10,7 +10,6 @@ export class TierListCardComponent {
   @Input() tierList!: TierList;
   @Output() editButtonClick: EventEmitter<any> = new EventEmitter();
   @Output() removeButtonClick: EventEmitter<any> = new EventEmitter();
-  @Output() toggleFavoriteValueButtonClick: EventEmitter<any> = new EventEmitter();
 
   onRemoveButtonClicked() {
     this.removeButtonClick.emit();
@@ -18,9 +17,5 @@ export class TierListCardComponent {
 
   onEditButtonClicked() {
     this.editButtonClick.emit();
-  }
-
-  onToggleFavoriteValueButtonClicked() {
-    this.toggleFavoriteValueButtonClick.emit();
   }
 }
