@@ -84,21 +84,6 @@ export class TierListGridPage {
   }
 
   private getFilteredTierListItems() {
-    let copy = JSON.parse(JSON.stringify(this.tierListItems));
-    if (this.querySearch == '' && !this.filterByFav) {
-      return copy
-    } else {
-      let lwCaseQueryString = this.querySearch.toLocaleLowerCase();
-      return copy.filter(elem => {
-        let formattedElem = this.getStringifiedLwCaseObjectValues(elem);
-        return this.filterByFav
-          ? formattedElem.includes(lwCaseQueryString) && elem.favorite
-          : formattedElem.includes(lwCaseQueryString);
-      })
-    }
-  }
-
-  private getStringifiedLwCaseObjectValues(obj: any) {
-    return Object.values(obj).join(' ').toLocaleLowerCase();
+    return JSON.parse(JSON.stringify(this.tierListItems));
   }
 }
