@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "63f204c7-da66-4924-8eec-d57a69f0fa82",
+		"_postman_id": "d60a4b53-1f9c-40b8-b557-7c3277918ec8",
 		"name": "TierListMaker Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -195,6 +195,90 @@
 								"api",
 								"tierlists",
 								"uuid5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", () => {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 401]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Comprobación Resultado.\", () => {\r",
+									"        if(pm.response.code !== 401){\r",
+									"        let responseJson = pm.response.json();\r",
+									"        let jsonData = responseJson;\r",
+									"        pm.expect(jsonData.id).to.be.a('string');\r",
+									"        pm.expect(jsonData.description).to.be.a('string');\r",
+									"        if(jsonData.banner){\r",
+									"            pm.expect(jsonData.banner).to.be.a('string');\r",
+									"        }\r",
+									"        pm.expect(jsonData.category).to.be.a('string');\r",
+									"        pm.expect(jsonData.nPictures).to.be.a('number');\r",
+									"        pm.expect(jsonData.title).to.be.a('string');\r",
+									"        pm.expect(jsonData.items).to.be.a('array');\r",
+									"        if(jsonData.items.length > 0){\r",
+									"            let tierToTest = jsonData.items[0];\r",
+									"            pm.expect(tierToTest.id).to.be.a('string');\r",
+									"            pm.expect(tierToTest.color).to.be.a('string');\r",
+									"            pm.expect(tierToTest.text).to.be.a('string');\r",
+									"            pm.expect(tierToTest.pictures).to.be.a('array');\r",
+									"        }\r",
+									"        pm.expect(jsonData.unassignedImages).to.be.a('array');\r",
+									"        pm.expect(jsonData.favorite).to.be.a('boolean');\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let id = pm.environment.get(\"id\");\r",
+									"console.log(\"Id-> \", id);\r",
+									"if(!id){\r",
+									"    id = 0;\r",
+									"}\r",
+									"id = parseInt(id);\r",
+									"id++;\r",
+									"pm.environment.set(\"id\", id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"id\": \"uuid {{id}}\",\r\n        \"description\": \"Desc {{id}}\",\r\n        \"banner\": null,\r\n        \"category\": \"robots\",\r\n        \"nPictures\": 10,\r\n        \"title\": \"Prueba {{id}}\",\r\n        \"items\": [\r\n            {\r\n                \"id\":\"uuid1\",\r\n                \"color\": \"#FFFFFF\",\r\n                \"text\": \"tier1\",\r\n                \"pictures\": [\"https://robohash.org/aaaa\"]\r\n            }\r\n        ],\r\n        \"unassignedImages\": [\"http://robohash.org/hola\"],\r\n        \"favorite\": false\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tierlists/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tierlists",
+								"save"
 							]
 						}
 					},
@@ -431,7 +515,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/pictures?category=robots",
+							"raw": "http://localhost:8080/api/pictures/random?_start=2&_limit=4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -439,17 +523,22 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"pictures"
+								"pictures",
+								"random"
 							],
 							"query": [
 								{
+									"key": "_start",
+									"value": "2"
+								},
+								{
 									"key": "category",
-									"value": "robots"
+									"value": "robots",
+									"disabled": true
 								},
 								{
 									"key": "_limit",
-									"value": "2",
-									"disabled": true
+									"value": "4"
 								}
 							]
 						}
@@ -459,6 +548,16 @@
 			]
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluQHRpZXJtYWtlci5jb20iLCJpYXQiOjE2NDg3MTc3OTcsImV4cCI6MTY0ODgwNDE5N30.w_0yAwnFFQwrHtpIYxMtuFiva9Pba03qnvPVnVrQuf8",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
