@@ -11,7 +11,10 @@ export class MainHeaderComponent {
   @Input() hasSearch: boolean = true;
   @Input() reset: boolean = false;
   @Output() inputSubmit: EventEmitter<any> = new EventEmitter()
-  @Output() menuClick: EventEmitter<any> = new EventEmitter()
+  // @Output() menuClick: EventEmitter<any> = new EventEmitter()
+  @Output() addNewTierList: EventEmitter<any> = new EventEmitter();
+
+
 
   queryString = '';
 
@@ -19,14 +22,18 @@ export class MainHeaderComponent {
     this.inputSubmit.emit(this.queryString);
   }
 
-  onMenuIconClicked() {
-    this.menuClick.emit();
-  }
+  // onMenuIconClicked() {
+  //   this.menuClick.emit();
+  // }
 
   ngOnChanges() {
     if (this.reset) {
       this.queryString = '';
       this.inputSubmit.emit(this.queryString);
     }
+  }
+
+  onAddNewTierListButtonClicked() {
+    this.addNewTierList.emit();
   }
 }

@@ -22,16 +22,19 @@ export class TierListApiService {
 
   private updateCachedAll() {
     this.apiService.get('/tierlists')
-      .pipe(tap({
-        next: (data: TierList[]) => {
-          this.isFirstCall = false;
-          this.allCachedSubject.next(data)
-        },
-        error: () => {
-          this.isFirstCall = true;
-          this.allCachedSubject.next(null);
-        }
-      })).subscribe();
+      .pipe(
+        map((data: TierList[]) => data.reverse()),
+        tap({
+          next: (data: TierList[]) => {
+            this.isFirstCall = false;
+            this.allCachedSubject.next(data)
+          },
+          error: () => {
+            this.isFirstCall = true;
+            this.allCachedSubject.next(null);
+          }
+        })
+      ).subscribe();
   }
 
   getById(id: string): Observable<TierList> {
@@ -50,7 +53,10 @@ export class TierListApiService {
 
   delete(tierList: TierList): Observable<any> {
     return this.apiService.delete(`/tierlists/${tierList.id}`)
-      .pipe(tap({next: () => this.updateCachedAll()}));
+      .pipe(
+
+        tap({next: () => this.updateCachedAll()})
+      );
   }
 
   constructor(private apiService: ApiService) { }

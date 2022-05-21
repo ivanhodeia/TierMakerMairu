@@ -14,14 +14,15 @@
       [reset]="resetSearchQuery"
       (inputSubmit)="onSearchQueryUpdated($event)"
       (menuClick)="drawer.toggle()"
+      (addNewTierList)="onAddNewTierListButtonClicked()"
       tier-main-header
-      *ngIf="!isLoginRoute()"
+      *ngIf="!isLoginRoute() && !isDetailsRoute()"
     ></header>
 
     <mat-drawer-container [class.full]="isLoginRoute()">
-      <mat-drawer mode="side" opened *ngIf="!isLoginRoute()" #drawer>
+      <!-- <mat-drawer mode="side" opened *ngIf="!isLoginRoute()" #drawer>
         <div class="view" [tierListItems]="tierListItems" (elementSelect)="onSidebarElementSelected($event)" tier-sidebar></div>
-      </mat-drawer>
+      </mat-drawer> -->
       <mat-drawer-content>
         <router-outlet></router-outlet>
       </mat-drawer-content>

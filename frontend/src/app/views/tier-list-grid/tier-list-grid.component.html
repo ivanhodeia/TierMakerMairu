@@ -1,17 +1,32 @@
 <div class="container-wrapper">
-  <mat-tab-group (focusChange)="onTabClicked($event)">
-    <mat-tab [label]="label" *ngFor="let label of ['TODAS', 'FAVORITAS']">
-      <div class="container">
-        <div
-          *ngFor="let item of filteredTierListItems"
-          [tierList]="item"
-          (editButtonClick)="onEditCardButtonClicked(item)"
-          (removeButtonClick)="onRemoveCardButtonClicked(item)"
-          (toggleFavoriteValueButtonClick)="onToggleFavoriteValueButtonClicked(item)"
-          (click)="onCardClicked(item)"
-          tier-list-card
-        ></div>
+  <div class="input-search" *ngIf="hasSearch">
+    <mat-form-field appearance="outline" color="accent">
+      <mat-label>Búsqueda</mat-label>
+      <input matInput [(ngModel)]="querySearch" type="text" [required]="false">
+      <div class="button-group" matSuffix>
+        <button *ngIf="querySearch != ''" mat-icon-button aria-label="Clear" (click)="querySearch = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-icon>search</mat-icon>
       </div>
-    </mat-tab>
-  </mat-tab-group>
+    </mat-form-field>
+  </div>
+  <div class="tierlist-container">
+    <mat-tab-group (focusChange)="onTabClicked($event)">
+      <mat-tab class="labelssdd" [label]="label" *ngFor="let label of ['Mis Tierlist', 'TODAS', 'FAVORITAS']">
+        <div class="container">
+          <div
+            *ngFor="let item of filteredTierListItems"
+            [tierList]="item"
+            (editButtonClick)="onEditCardButtonClicked(item)"
+            (removeButtonClick)="onRemoveCardButtonClicked(item)"
+            (toggleFavoriteValueButtonClick)="onToggleFavoriteValueButtonClicked(item)"
+            (click)="onCardClicked(item)"
+            tier-list-card
+          ></div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
 </div>

@@ -44,6 +44,11 @@ export class AppComponent {
     return this.router.url === `/${ROUTE.Login}`;
   }
 
+  isDetailsRoute() {
+    console.log(this.router.url);
+    return this.router.url.includes('details');
+  }
+
   onLogoutButtonClicked() {
     this.authService.logout();
   }

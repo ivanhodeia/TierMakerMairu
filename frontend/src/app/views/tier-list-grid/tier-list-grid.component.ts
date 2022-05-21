@@ -17,6 +17,7 @@ export class TierListGridPage {
   filterByFav: boolean = false;
   querySearch: string = '';
   filteredTierListItems: Array<TierList> = [];
+  hasSearch: boolean = true;
 
   onEditCardButtonClicked(tierList: TierList) {
     const dialogRef = this.dialog.open(TierListDialogComponent, {
