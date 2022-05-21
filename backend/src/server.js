@@ -1,4 +1,8 @@
 const express = require('express');
+var { graphqlHTTP } = require('express-graphql');
+var { buildSchema } = require('graphql');
+var { userSchema, getAllUsers, getUser } = require('./graphQL/resolvers/UserResolver');
+var { tierListSchema, getAllTierLists, getTierList } = require('./graphQL/resolvers/TierListResolver');
 var cors=require('cors');
 const sequelize = require('./database/database');
 
@@ -26,6 +30,48 @@ app.listen(PORT, () => {
 
 app.use( express.json());
 
+// Construct a schema, using GraphQL schema language
+console.log("Schema-> ", userSchema);
+var schema = buildSchema(`
+  ${userSchema}
+  ${tierListSchema}
+
+  type Query {
+    user(email: String): [User]
+    tierList(id: String): [TierList]
+  }
+`);
+
+// The root provides a resolver function for each API endpoint
+var root = {
+  user: async ({email}) => {
+    let res;
+    if(email){
+      res = await getUser(email);
+    }
+    else{
+      res = await getAllUsers();
+    }
+    return res;
+  },
+  tierList: async ({id}) => {
+    let res;
+    if(id){
+      res = await getTierList(id);
+    }
+    else{
+      res = await getAllTierLists();
+    }
+    return res;
+  },
+};
+
+
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true,
+}));
 
 app.use('/api/tierlists', tierListsController);
 app.use('/api/auth', authController);

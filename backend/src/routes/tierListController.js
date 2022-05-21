@@ -1,16 +1,21 @@
 var express = require('express');
 const TierList = require ('../models/TierList');
+const { formatTierList } = require('../graphQL/resolvers/TierListResolver');
 const { authenticateToken } = require('../tokenController');
 var router = express.Router();
 
 /** GET ALL */
 router.get('/', authenticateToken, (req, res) => {
     let status = 200;
+    console.log("Hola");
     TierList.findAll().then( (response) => {
         let tierLists = response.map( (tierListInfo) => {
             return formatTierList(tierListInfo);
         });
         res.status(status).send(tierLists);
+    },
+    (error) => {
+        console.log("Error", error);
     });
 });
 /** GET ONE */
@@ -45,7 +50,6 @@ router.post('/save', authenticateToken, (req, res) => {
             id: tierList.id,
         },
     }).then( (response) => {
-        console.log("TierList", tierList);
         if(response.length == 0){
             tierListToSave = formatTierList(tierList, true);
             saveTierList(res, tierListToSave);
@@ -127,17 +131,5 @@ router.delete('/:id', authenticateToken, (req, res) => {
         }
     });
 });
-
-function formatTierList(tierList, isSave = false) {
-    if(isSave){
-        tierList.items = JSON.stringify(tierList.items);
-        tierList.pictures = JSON.stringify(tierList.pictures);
-    }
-    else{
-        tierList.items = JSON.parse(tierList.items);
-        tierList.pictures = JSON.parse(tierList.pictures);
-    }
-    return tierList;
-}
 
 module.exports = router;
