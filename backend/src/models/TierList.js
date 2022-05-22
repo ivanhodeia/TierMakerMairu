@@ -2,7 +2,6 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../database/database');
 
 class TierList extends Model {
-
 }
 
 TierList.init({ 
@@ -40,5 +39,19 @@ TierList.init({
     sequelize,
     modelName: 'TierList'
 });
+
+TierList.getEmpty = () => {
+    return {
+        id: null,
+        description: null,
+        banner: null,
+        category: 'others',
+        nPictures: 0,
+        title: null,
+        items: [],
+        favorite: 0,
+        unassignedImages: [],
+    };
+}
 
 module.exports = TierList;

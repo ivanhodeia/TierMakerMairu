@@ -7,7 +7,6 @@ var router = express.Router();
 /** GET ALL */
 router.get('/', authenticateToken, (req, res) => {
     let status = 200;
-    console.log("Hola");
     TierList.findAll().then( (response) => {
         let tierLists = response.map( (tierListInfo) => {
             return formatTierList(tierListInfo);
