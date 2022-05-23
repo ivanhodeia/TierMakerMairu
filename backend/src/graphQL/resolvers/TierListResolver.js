@@ -1,3 +1,4 @@
+const { v4: uuidv4, } = require('uuid');
 const TierList = require ('../../models/TierList');
 
 const tierListSchema = `
@@ -20,12 +21,33 @@ const tierListSchema = `
     unassignedImages: [String]
   }
 
+  type Error {
+    code: Int!
+    msg: String!
+  }
+
+  type TierListArrayResponse {
+    data: [TierList]
+    errors: [Error]
+  }
+
+  type TierListResponse {
+    data: TierList
+    errors: [Error]
+  }
+
+  type BooleanResponse {
+    data: Boolean
+    errors: [Error]
+  }
+
   input InputTierList {
-    description: String
-    banner: String
+    title: String!
+    description: String!
+    banner: String!
     category: String
     nPictures: Int
-    title: String
+    nItems: Int
     favorite: Boolean
     unassignedImages: [String]
   }
@@ -36,10 +58,10 @@ const tierListQueries = `
 `;
 
 const tierListMutations = `
-    createTierList(id: String!, info: InputTierList!): TierList
-    updateTierList(id: String!, info: InputTierList!): TierList
-    toggleFavorite(id: String!): Boolean
-    deleteTierList(id: String!): TierList
+    createTierList(id: String!, info: InputTierList!): TierListResponse
+    updateTierList(id: String!, info: InputTierList!): TierListResponse
+    toggleFavorite(id: String!): BooleanResponse
+    deleteTierList(id: String!): TierListResponse
 `;
 
 const tierListRoot = {
@@ -103,19 +125,42 @@ async function createTierList(id, info){
             id: id,
         },
     });
+    let errors = null;
     if(tierListInfo){
         tierListInfo = null;
+        errors = [{
+            code: 1,
+            msg: 'Existing ID'
+        }]
     }
     else{
         tierListInfo = TierList.getEmpty();
         tierListInfo.id = id;
+        if(info.nItems){
+            console.log("Default Items");
+            let nItems = info.nItems;
+            let items = [];
+            for(let index = 0; index < nItems; index++){
+                let uuid = uuidv4();
+                let item = TierList.getEmptyItem(uuid);
+                items.push(item);
+            }
+            tierListInfo.items = [...items];
+            delete info.nItems;
+        }
+
         Object.keys(info).forEach( (key) => {
             tierListInfo[key] = info[key];
         });
-        let tierListToSave = formatTierList(tierListInfo, true);
+        console.log("Tier List to Save-> ", tierListInfo);
+        let tierListToSave = formatTierList({...tierListInfo}, true);
         await TierList.create(tierListToSave);
     }
-    return tierListInfo;
+    console.log("Info-> ", tierListInfo);
+    return {
+        data: tierListInfo,
+        errors: errors,
+    };
 }
 async function updateTierList(id, info){
     let tierListInfo = await TierList.findOne({
@@ -124,6 +169,7 @@ async function updateTierList(id, info){
         },
     });
     let response = null;
+    let errors = null;
     if(tierListInfo){
         tierListInfo = formatTierList(tierListInfo);
         let tierListToSave = {};
@@ -143,11 +189,21 @@ async function updateTierList(id, info){
         tierListToSave.id = id;
         response = tierListInfo;
     }
-    return response;
+    else{
+        errors = [{
+            code: 2,
+            msg: 'Not Found',
+        }];
+    }
+    return {
+        data: response,
+        errors: errors,
+    };
 }
 
 async function toggleFavorite(id) {
     let newValue = null;
+    let errors = null;
     let tierListInfo = await TierList.findOne({
         attributes: ['id', 'favorite',],
         where: {
@@ -165,10 +221,19 @@ async function toggleFavorite(id) {
             },
         });
     }
-    return newValue;
+    else{
+        errors = [
+            {code: 2, msg: 'Not Found'},
+        ];
+    }
+    return {
+        data: newValue,
+        errors: errors,
+    };
 }
 
 async function deleteTierList(id) {
+    let errors = null;
     let tierList = await TierList.findOne({
         where: {
             id: id,
@@ -182,7 +247,16 @@ async function deleteTierList(id) {
             },
         });
     }
-    return tierList;
+    else{
+        errors = {
+            code: 2,
+            msg: 'Not Found',
+        };
+    }
+    return {
+        data: tierList, 
+        errors: errors,
+    };
 }
 
 module.exports = {

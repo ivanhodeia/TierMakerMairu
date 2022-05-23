@@ -54,4 +54,13 @@ TierList.getEmpty = () => {
     };
 }
 
+TierList.getEmptyItem = (id = null) => {
+    return {
+        id: id,
+        color: null,
+        text: null,
+        pictures: [],
+    };
+}
+
 module.exports = TierList;
