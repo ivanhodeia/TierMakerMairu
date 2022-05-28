@@ -1,11 +1,6 @@
 const User = require ('../../models/User');
 
-const userSchema = `
-  type User {
-    id: String
-    email: String
-    password: String
-  }`;
+
 
 async function getAllUsers(){
     let users = await User.findAll();
@@ -21,7 +16,6 @@ async function getUser(email){
 }
 
 module.exports = {
-    userSchema: userSchema,
     getAllUsers: getAllUsers,
     getUser: getUser,
 };

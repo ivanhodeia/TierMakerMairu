@@ -1,8 +1,10 @@
 var express = require('express');
 const TierList = require ('../models/TierList');
-const { formatTierList } = require('../graphQL/resolvers/TierListResolver');
+const TierListResolver = require('../graphQL/resolvers/TierListResolver');
 const { authenticateToken } = require('../tokenController');
 var router = express.Router();
+
+const formatTierList = new TierListResolver().formatTierList;
 
 /** GET ALL */
 router.get('/', authenticateToken, (req, res) => {

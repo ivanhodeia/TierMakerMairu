@@ -1,6 +1,6 @@
 const { buildSchema } = require('graphql');
-const { userSchema, getAllUsers, getUser } = require('./resolvers/UserResolver');
-const { tierListSchema, tierListQueries, tierListMutations, tierListRoot } = require('./resolvers/TierListResolver');
+const {userSchema, userQueries, userRoot} = require('./core/UserCore');
+const { tierListSchema, tierListQueries, tierListMutations, tierListRoot } = require('./core/TierListcore');
 
 // Construct a schema, using GraphQL schema language
 let schemaString = `
@@ -8,7 +8,7 @@ let schemaString = `
   ${tierListSchema}
 
   type Query {
-    user(email: String): [User]
+    ${userQueries}
     ${tierListQueries}
   }
 
@@ -20,16 +20,7 @@ console.log("Schema", schemaString);
 const schema = buildSchema(schemaString);
 // The root provides a resolver function for each API endpoint
 const root = {
-  user: async ({email}) => {
-    let res;
-    if(email){
-      res = await getUser(email);
-    }
-    else{
-      res = await getAllUsers();
-    }
-    return res;
-  },
+  ... userRoot,
   ...tierListRoot
 };
 
